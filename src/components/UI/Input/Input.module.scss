@@ -1,0 +1,80 @@
+@use "../../../styles/variables" as vars;
+
+.ui-input {
+  position: relative;
+
+  .input {
+    width: vars.$input-width-default;
+    padding: 0.625rem 1.25rem;
+    border: vars.$border-input;
+    border-radius: 1.875rem;
+    font: 400 1rem / 1 vars.$font-roboto;
+    color: vars.$color-text;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:focus-visible,
+    &:hover {
+      border-color: vars.$border-color;
+    }
+
+    &:disabled {
+      background-color: vars.$color-disabled;
+      border-color: vars.$border-disabled;
+      cursor: not-allowed;
+    }
+
+    &:focus-visible + .input-label,
+    &.input-filled + .input-label {
+      top: 0;
+      font-size: 0.85rem;
+      color: vars.$color-text;
+      transform: translateY(-50%);
+    }
+  }
+
+  input:-webkit-autofill {
+    box-shadow: 0 0 0 30px vars.$color-white inset !important;
+  }
+
+  .input-error {
+    border-color: vars.$color-error !important;
+  }
+
+  .input-label {
+    position: absolute;
+    left: 0.75rem;
+    top: 0.8125rem;
+    padding: 0 0.25rem;
+    font: 300 1rem / 1 vars.$font-roboto;
+    color: vars.$color-placeholder;
+    background: vars.$color-white;
+    pointer-events: none;
+    transition: top 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+
+    &.input-filled,
+    .input:focus ~ & {
+      top: 0;
+      font-size: 0.85rem;
+      color: vars.$color-text;
+      transform: translateY(-50%);
+    }
+  }
+
+  .error-message-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    color: vars.$color-error;
+    font: 300 0.75rem / 1 vars.$font-roboto;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    &.show-error {
+      margin-bottom: 10px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

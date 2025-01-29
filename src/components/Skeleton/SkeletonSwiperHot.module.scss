@@ -1,0 +1,70 @@
+.skeleton-container {
+  display: flex;
+  gap: 25px;
+  overflow: hidden;
+
+  .skeleton-slide {
+    flex: 0 0 auto;
+    width: 260px;
+    height: 340px;
+    background: #f3f3f3;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .skeleton-image {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(90deg, #e0e0e0 25%, #f3f3f3 50%, #e0e0e0 75%);
+      background-size: 200% 100%;
+      animation: skeleton-loading 1.5s infinite;
+    }
+
+    .skeleton-info {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      .skeleton-price,
+      .skeleton-location,
+      .skeleton-date {
+        height: 16px;
+        margin-bottom: 8px;
+        background: linear-gradient(
+          90deg,
+          #e0e0e0 25%,
+          #f3f3f3 50%,
+          #e0e0e0 75%
+        );
+        background-size: 200% 100%;
+        animation: skeleton-loading 1.5s infinite;
+      }
+
+      .skeleton-price {
+        width: 50%;
+      }
+
+      .skeleton-location {
+        width: 80%;
+      }
+
+      .skeleton-date {
+        width: 60%;
+      }
+    }
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

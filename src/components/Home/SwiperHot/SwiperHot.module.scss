@@ -1,0 +1,219 @@
+@use "../../../styles/variables.scss" as vars;
+
+.header-hot {
+  position: relative;
+  margin-top: 130px;
+  margin-bottom: 60px;
+
+  @media (max-width: 550px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+
+  .hot-text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    @media (max-width: 550px) {
+      justify-content: center;
+      align-items: center;
+    }
+
+    h2 {
+      font: 500 clamp(1.75rem, 2.5vw, 2.75rem) / 1 vars.$font-roboto;
+      color: vars.$color-text;
+    }
+
+    p {
+      font: 300 clamp(1rem, 2.5vw, 1rem) / 1 vars.$font-roboto;
+      text-transform: uppercase;
+      color: vars.$color-text;
+    }
+  }
+
+  .tours-title {
+    position: absolute;
+    text-transform: none;
+    left: -180px;
+    bottom: -150px;
+    font: 400 clamp(2.25rem, 2.5vw, 3.25rem) / 1 vars.$font-millanova;
+    color: #d4d4d4;
+
+    @media (max-width: 1500px) {
+      left: 25%;
+      bottom: 0;
+      top: 50px;
+    }
+
+    @media (max-width: 850px) {
+      left: 30%;
+    }
+
+    @media (max-width: 700px) {
+      left: 40%;
+    }
+
+    @media (max-width: 550px) {
+      position: static;
+    }
+  }
+}
+
+.swiper {
+  width: 100%;
+  height: 390px;
+  margin-bottom: 140px;
+
+  @media (max-width: 1024px) {
+    margin-bottom: 100px;
+  }
+
+  @media (max-width: 500px) {
+    margin-bottom: 80px;
+  }
+}
+
+.swiper-slide {
+  position: relative;
+  max-width: 260px;
+  max-height: 340px;
+  border-radius: 30px;
+  overflow: hidden;
+
+  .hotel-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 2;
+  }
+}
+
+.hotel-info {
+  position: absolute;
+  padding: 20px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.3) 40%,
+      rgba(0, 0, 0, 0.5) 80%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+    pointer-events: none;
+    z-index: 9;
+  }
+
+  .hotel-price {
+    padding: 3px 10px;
+    border: 1px solid vars.$color-white;
+    font: 300 0.875rem / 1 vars.$font-roboto;
+    border-radius: 30px;
+    color: vars.$color-white;
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .hotel-location {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 6px;
+
+    h4 {
+      color: vars.$color-white;
+      font: 300 0.875rem / 1 vars.$font-roboto;
+    }
+
+    .circle {
+      height: 5px;
+      width: 5px;
+      background: vars.$color-white;
+      border-radius: 50%;
+    }
+  }
+
+  .hotel-date {
+    color: vars.$color-white;
+    font: 500 0.875rem / 1 vars.$font-roboto;
+    text-transform: none;
+    margin-bottom: 6px;
+  }
+
+  .details-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: vars.$color-white;
+    font: 300 0.875rem / 1 vars.$font-roboto;
+    transition: color 0.5s;
+
+    &:hover {
+      color: #d4d4d4;
+    }
+
+    img {
+      transition: transform 0.3s ease-in-out, filter 0.5s ease-in-out;
+      filter: brightness(1) saturate(1) invert(0) sepia(0) hue-rotate(0deg)
+        contrast(1);
+    }
+
+    &:hover img {
+      animation: scale 1.5s ease-in-out infinite;
+      filter: brightness(0) saturate(100%) invert(98%) sepia(0%) saturate(35%)
+        hue-rotate(147deg) brightness(87%) contrast(93%);
+    }
+
+    @keyframes scale {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(0.9);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  }
+
+  p,
+  h4,
+  .hotel-location,
+  .circle,
+  .details-link {
+    position: relative;
+    z-index: 21;
+  }
+}

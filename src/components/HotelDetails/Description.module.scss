@@ -1,0 +1,78 @@
+@use "../../styles/variables.scss" as vars;
+
+.section-description {
+  margin-top: 20px;
+
+  .description-desktop {
+    @media (max-width: 550px) {
+      display: none;
+    }
+  }
+
+  .hotel-name {
+    font: 900 clamp(1.25rem, 0.5vw, 2rem) / 1 vars.$font-roboto;
+    margin: 10px 0 15px 0;
+  }
+
+  .star-rating {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+
+    img {
+      height: 18px;
+      width: 18px;
+    }
+  }
+
+  .review-info {
+    font-size: 0.875rem;
+
+    .rating {
+      background-color: vars.$color-indigo;
+      padding: 4px 10px;
+      border-radius: 30px;
+      font-weight: 400;
+      color: vars.$color-white;
+    }
+  }
+
+  .price-text {
+    font-size: 0.875rem;
+
+    .price-amount {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+  }
+
+  .title {
+    font-size: 1.75rem;
+    font-weight: 500;
+    margin: 80px 0 20px 0;
+  }
+
+  .description {
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+
+  .amenities-list {
+    list-style-image: url("../../assets/images/check-icon.svg");
+    list-style-position: inside;
+    padding: 0;
+    margin: 0;
+    column-count: 2;
+    column-gap: 20px;
+    font: 300 0.875rem / 1 vars.$font-roboto;
+
+    li {
+      margin-bottom: 10px;
+      text-transform: lowercase;
+    }
+
+    @media (max-width: 500px) {
+      column-count: 1;
+    }
+  }
+}

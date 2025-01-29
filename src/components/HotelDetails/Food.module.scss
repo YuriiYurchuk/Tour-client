@@ -1,0 +1,100 @@
+@use "../../styles/variables.scss" as vars;
+
+.section-food {
+  margin-top: 80px;
+
+  .heading {
+    font-weight: 500;
+    color: vars.$color-text;
+    margin-bottom: 20px;
+  }
+
+  .subheading {
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+
+  .restaurants-list {
+    list-style: disc;
+    margin-left: 20px;
+    font-size: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-transform: lowercase;
+    margin-bottom: 30px;
+  }
+
+  .food-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .food {
+      padding: 25px;
+      width: 100%;
+      border: 1px solid #d4d4d4;
+      border-radius: 30px;
+      display: flex;
+      justify-content: space-between;
+
+      @media (max-width: 550px) {
+        gap: 30px;
+        flex-direction: column;
+      }
+
+      h4 {
+        font-size: 1.25rem;
+        text-transform: none;
+        font-weight: 500;
+        margin-bottom: 30px;
+      }
+
+      .food-list {
+        list-style-image: url("../../assets/images/check-icon.svg");
+        list-style-position: inside;
+        padding: 0;
+        margin: 0;
+        font: 300 0.875rem / 1 vars.$font-roboto;
+      }
+
+      button {
+        padding: 10px 25px;
+        font: 500 1rem / 1 vars.$font-roboto;
+        margin-bottom: 5px;
+        border-radius: 30px;
+        outline: none;
+        width: 100%;
+      }
+
+      .active-button {
+        border: 1px solid #6a6a6a;
+        position: relative;
+        padding-right: 40px;
+
+        &::after {
+          position: absolute;
+          margin-left: 10px;
+          content: url("../../assets/images/check-icon-black.svg");
+        }
+      }
+
+      .inactive-button {
+        background-color: vars.$color-text;
+        color: vars.$color-white;
+        transition: background-color 0.4s;
+
+        &:focus-visible,
+        &:hover {
+          background-color: #676767;
+        }
+      }
+
+      .price {
+        text-align: center;
+        color: #585858;
+        font-size: 0.875rem;
+      }
+    }
+  }
+}

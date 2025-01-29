@@ -1,0 +1,21 @@
+.reviews {
+  margin-bottom: 11.25rem;
+
+  @media (max-width: 1024px) {
+    margin-bottom: 8.75rem;
+  }
+  @media (max-width: 500px) {
+    margin-bottom: 7.5rem;
+  }
+
+  .reviews-list {
+    position: relative;
+    overflow: visible;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    justify-items: center;
+    gap: 20px;
+    align-items: start;
+    margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
+  }
+}

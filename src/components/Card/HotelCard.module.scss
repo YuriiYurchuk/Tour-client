@@ -1,0 +1,215 @@
+@use "../../styles/variables.scss" as vars;
+
+.container-card {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 0.5fr;
+  gap: 20px;
+  border: 1.5px solid #d4d4d4;
+  border-radius: 30px;
+  overflow: hidden;
+  min-height: 280px;
+  position: relative;
+
+  @media (max-width: 950px) {
+    grid-template-columns: 1fr 1fr 0.5fr;
+  }
+
+  @media (max-width: 750px) {
+    grid-template-columns: 1fr;
+  }
+
+  .section-img {
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    @media (max-width: 750px) {
+      max-height: 300px;
+    }
+
+    .card-img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .season-img {
+      border-radius: 30px;
+      font-size: 0.875rem;
+      color: vars.$color-text;
+      padding: 4px 20px;
+      background-color: vars.$color-white;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+
+      @media (min-width: 750px) {
+        display: none;
+      }
+    }
+
+    .hot-deal-icon img {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      z-index: 10;
+    }
+  }
+
+  .section-content {
+    padding-block: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media (max-width: 750px) {
+      flex-direction: row;
+      justify-content: space-evenly;
+      padding: 0;
+    }
+
+    @media (max-width: 500px) {
+      flex-direction: column;
+      padding-inline: 20px;
+    }
+
+    h4 {
+      text-transform: none;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .hotel-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .star-rating {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 20px;
+
+      img {
+        height: 18px;
+        width: 18px;
+      }
+    }
+
+    .hotel-review-rating {
+      font-size: 0.875rem;
+
+      @media (max-width: 950px) {
+        margin-bottom: 10px;
+      }
+    }
+
+    .rating {
+      background-color: vars.$color-indigo;
+      padding: 4px 10px;
+      border-radius: 30px;
+      font-weight: 400;
+      color: vars.$color-white;
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+
+      @media (max-width: 950px) {
+        flex-direction: column;
+        gap: 10px;
+        align-items: start;
+      }
+
+      .date-info {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 8px;
+      }
+
+      .meal-info {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+    }
+
+    .amenities-list {
+      list-style-image: url("../../assets/images/check-icon.svg");
+      list-style-position: inside;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font: 300 0.875rem / 1 vars.$font-roboto;
+
+      li {
+        line-height: 1;
+        text-transform: lowercase;
+      }
+
+      @media (max-width: 500px) {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .section-footer {
+    position: relative;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      bottom: 20px;
+      left: 0;
+      width: 1px;
+      background-color: #d4d4d4;
+    }
+
+    .season {
+      display: flex;
+      justify-content: end;
+
+      .season-text {
+        border: 1px solid #d4d4d4;
+        border-radius: 30px;
+        font-size: 0.875rem;
+        color: #585858;
+        padding: 4px 20px;
+
+        @media (max-width: 750px) {
+          display: none;
+        }
+      }
+    }
+
+    .price {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      gap: 15px;
+
+      @media (max-width: 750px) {
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .price-text {
+        font-size: 0.875rem;
+
+        .price-amount {
+          font-size: 1.5rem;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

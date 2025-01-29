@@ -1,0 +1,61 @@
+.auth-container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -1.25rem;
+    background: url(../../assets/images/bg-authorization.webp) center/cover
+      no-repeat;
+    filter: blur(0.3125rem);
+    z-index: -1;
+  }
+
+  .auth-content {
+    display: grid;
+    grid-template-columns: 4fr 2fr;
+    align-items: center;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    max-width: 87.5rem;
+    max-height: 37.5rem;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      url(../../assets/images/bg-authorization.webp) center / 105% no-repeat;
+    border-radius: 0.9375rem;
+    overflow: hidden;
+  }
+
+  @media (max-width: 1280px) {
+    .auth-content {
+      max-width: 68.75rem;
+    }
+  }
+  @media (max-width: 920px) {
+    .auth-content {
+      grid-template-columns: 1fr 1fr;
+      overflow: auto;
+    }
+  }
+
+  @media (max-width: 590px) {
+    .auth-content {
+      grid-template-columns: 1fr;
+      grid-template-columns: none;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      max-width: 100%;
+      max-height: 100%;
+      background-size: cover;
+      overflow: auto;
+      border-radius: 0;
+    }
+
+    .auth-content > * {
+      scroll-snap-align: start;
+    }
+  }
+}

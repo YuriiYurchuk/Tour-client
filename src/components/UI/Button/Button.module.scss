@@ -1,0 +1,113 @@
+@use "../../../styles/variables" as vars;
+
+.ui-button {
+  border-radius: 1.875rem;
+  cursor: pointer;
+  transition: background-color 0.5s;
+
+  &--red {
+    position: relative;
+    padding: 0.625rem 2.75rem 0.625rem 1.875rem;
+    font: 500 1rem / 1 vars.$font-roboto;
+    color: #fff;
+    text-transform: uppercase;
+    background-color: vars.$button-background;
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+      border: none;
+    }
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+
+    &:focus-visible,
+    &:hover {
+      background-color: vars.$button-hover;
+    }
+
+    &::after {
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      content: url("../../../assets//images/arrow-icon.svg");
+      transform: translateY(-50%);
+      transition: transform 0.5s;
+    }
+
+    &:focus-visible::after,
+    &:hover::after {
+      transform: translate(5px, -50%) rotate(-45deg);
+    }
+
+    @media (hover: none) {
+      &:focus-visible,
+      &:hover {
+        background-color: vars.$button-background;
+      }
+
+      &:focus::after {
+        transform: translateY(-50%);
+      }
+    }
+
+    @media (max-width: 460px) {
+      width: 3rem;
+      height: 3rem;
+      padding: 1rem;
+      border-radius: 50%;
+      line-height: 3rem;
+
+      .ui-button__text {
+        display: none !important;
+      }
+
+      &::after {
+        display: inline-block;
+        right: 1.1rem;
+      }
+
+      &:focus-visible,
+      &:hover {
+        background-color: vars.$button-background;
+      }
+    }
+  }
+
+  &--gray {
+    padding: 0.6875rem 1.0625rem;
+    font: 500 0.875rem / 1 vars.$font-roboto;
+    color: #000;
+    text-transform: uppercase;
+    background-color: transparent;
+    border: vars.$border-button;
+
+    &:hover {
+      background-color: vars.$color-background;
+      border: vars.$border-button;
+      outline: none;
+    }
+
+    &:focus-visible {
+      background-color: vars.$color-background;
+      border: vars.$border-button;
+      outline: none;
+    }
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    @media (hover: none) {
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+
+  .ui-button__text {
+    display: inline;
+  }
+}

@@ -1,0 +1,183 @@
+@use "sass:color";
+@use "../../styles/variables.scss" as vars;
+
+.form {
+  backdrop-filter: blur(10px);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  form {
+    max-width: 260px;
+    width: 100%;
+
+    .form-input__auth {
+      margin-bottom: 30px;
+    }
+
+    .input-auth {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid #d4d4d4;
+      padding: 0.625rem 0.3125rem;
+      color: vars.$color-white;
+      outline: none;
+      border-radius: 0;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        border-color: vars.$color-text;
+      }
+
+      &:focus + .label-auth,
+      &.input-filled + .label-auth {
+        color: vars.$color-white;
+        top: 0;
+        font-size: 0.85rem;
+        transform: translateY(-100%);
+      }
+    }
+
+    .label-auth {
+      background: transparent;
+      position: absolute;
+      left: 0;
+      color: vars.$color-white;
+      pointer-events: none;
+      padding-left: 1rem;
+      transition: top 0.3s ease, font-size 0.3s ease, transform 0.3s ease;
+      top: 70%;
+      font-size: 1rem;
+
+      &:not(.input-filled):not(:focus) {
+        color: vars.$color-white;
+        transform: translateY(-100%);
+      }
+    }
+  }
+}
+
+.input-wrapper {
+  position: relative;
+
+  .toggle-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #d4d4d4;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:focus-visible,
+    &:hover {
+      color: vars.$color-text;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    .toggle-button {
+      &:focus {
+        color: #d4d4d4;
+        outline: none;
+      }
+    }
+  }
+}
+
+.submit {
+  background-color: #2563eb;
+  color: vars.$color-white;
+  text-transform: uppercase;
+  font: 500 1rem / 1 vars.$font-roboto;
+  margin-top: 1.25rem;
+  padding: 0.9375rem 0;
+  width: 100%;
+  border: none;
+  outline: none;
+  letter-spacing: 1px;
+  border-radius: 1.25rem;
+  transition: transform 0.4s, background-color 0.5s;
+  will-change: transform;
+
+  &:focus-visible,
+  &:hover {
+    transform: scale(1.03);
+    background-color: #3b82f6;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.switch-form-btn {
+  background-color: vars.$color-white;
+  padding: 0.9375rem 2rem;
+  color: vars.$color-text;
+  font: 400 1rem / 1 vars.$font-roboto;
+  border-radius: 1.25rem;
+  transition: transform 0.4s, background-color 0.5s;
+  will-change: transform;
+  border: none;
+  outline: none;
+
+  &:focus-visible,
+  &:hover {
+    background-color: vars.$color-background;
+    transform: scale(1.03);
+  }
+}
+
+.link-home {
+  color: vars.$color-white;
+  font: 400 1rem / 1 vars.$font-roboto;
+  position: relative;
+  border: none;
+  outline: none;
+  transition: color 0.4s;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: vars.$color-white;
+    transition: width 0.4s;
+  }
+
+  &:focus-visible,
+  &:hover {
+    color: color.scale(vars.$color-text, $lightness: 60%);
+  }
+
+  &:focus-visible::after,
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .login-title {
+    font-size: 50px;
+  }
+}
+
+@media (max-width: 590px) {
+  .form {
+    padding: 20px;
+    min-height: 100vh;
+  }
+}

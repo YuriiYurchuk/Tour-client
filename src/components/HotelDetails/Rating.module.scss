@@ -1,0 +1,109 @@
+@use "../../styles/variables.scss" as vars;
+
+.section-rating {
+  margin-top: 80px;
+
+  .title {
+    margin-bottom: 20px;
+    color: vars.$color-text;
+    font-weight: 500;
+  }
+
+  .review-info {
+    font-size: 0.875rem;
+    margin-bottom: 25px;
+
+    .rating {
+      background-color: vars.$color-indigo;
+      padding: 4px 10px;
+      border-radius: 30px;
+      font-weight: 400;
+      color: vars.$color-white;
+    }
+  }
+
+  .rating-list {
+    display: flex;
+    justify-content: space-between;
+    font: 300 1rem / 1 vars.$font-roboto;
+    color: vars.$color-text;
+    margin-bottom: 20px;
+
+    @media (max-width: 700px) {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      justify-items: center;
+      gap: 20px;
+    }
+
+    @media (max-width: 500px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 360px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .rating-value {
+      font-weight: 500;
+    }
+  }
+
+  .reviews-container {
+    display: flex;
+    gap: 30px;
+    align-content: center;
+
+    @media (max-width: 550px) {
+      flex-direction: column;
+    }
+
+    .review {
+      background-color: #f8f8f8;
+      padding: 24px;
+      width: 100%;
+      border-radius: 30px;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+
+      .review-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+
+        .review-rating {
+          background-color: vars.$color-indigo;
+          color: vars.$color-white;
+          font-weight: 400;
+          font-size: 0.875rem;
+          padding: 4px 10px;
+          border-radius: 30px;
+        }
+
+        .review-user {
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          margin-left: 10px;
+        }
+
+        .review-date {
+          font: 300 0.75rem / 1 vars.$font-roboto;
+          color: #6b6b6b;
+        }
+      }
+    }
+  }
+
+  .reviews-btn {
+    text-transform: unset;
+
+    span {
+      font-size: 1rem;
+      color: vars.$color-text;
+    }
+  }
+
+  .no-reviews-message {
+    font: 300 0.875rem / 1 vars.$font-roboto;
+  }
+}

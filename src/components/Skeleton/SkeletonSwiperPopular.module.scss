@@ -1,0 +1,41 @@
+.skeleton-container {
+  display: flex;
+  gap: 25px;
+  overflow: hidden;
+
+  .skeleton-slide {
+    flex: 0 0 auto;
+    width: 540px;
+    height: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+
+    @media (max-width: 500px) {
+      max-width: 300px;
+      max-height: 200px;
+    }
+
+    .skeleton-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #e0e0e0 25%, #f3f3f3 50%, #e0e0e0 75%);
+      background-size: 200% 100%;
+      animation: skeleton-loading 1.5s infinite;
+    }
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

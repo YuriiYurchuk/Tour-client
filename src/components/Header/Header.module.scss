@@ -1,0 +1,152 @@
+@use "../../styles/variables.scss" as vars;
+
+.container-shadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 16px rgba(0, 0, 0, 0.1);
+}
+
+.header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .logo {
+    padding: 0.9375rem 0;
+    transition: transform 0.4s, filter 0.4s;
+    will-change: transform;
+    outline: none;
+
+    @media (max-width: 1000px) {
+      flex: 1;
+    }
+
+    &:focus-visible,
+    &:hover {
+      transform: scale(1.03);
+      filter: drop-shadow(0 4px 2px rgba(0, 0, 0, 0.3));
+    }
+  }
+
+  .header-nav {
+    @media (max-width: 1000px) {
+      display: none;
+    }
+
+    .header-nav__menu {
+      display: flex;
+      gap: 2.5rem;
+
+      .nav-link {
+        position: relative;
+        display: inline-block;
+        text-transform: uppercase;
+        font: 400 0.875rem / 1 vars.$font-roboto;
+
+        &::after {
+          content: " ";
+          position: absolute;
+          bottom: -3px;
+          left: 50%;
+          width: 0;
+          height: 2px;
+          background-color: black;
+          transition: width 0.4s;
+          transform: translateX(-50%);
+        }
+
+        &:focus-visible {
+          outline: none;
+          border: none;
+
+          &::after {
+            width: 100%;
+          }
+        }
+
+        &:hover::after {
+          width: 100%;
+        }
+
+        &.active::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .header-buttons {
+    @media (max-width: 600px) {
+      display: none;
+    }
+
+    .header-icon {
+      display: flex;
+      align-items: center;
+
+      .heder-btn__phone,
+      .heder-btn__location {
+        padding: 10px;
+        outline: none;
+
+        img {
+          transition: filter 0.3s;
+        }
+
+        &:focus-visible img,
+        &:hover img {
+          filter: brightness(0) saturate(100%) invert(27%) sepia(48%)
+            saturate(4077%) hue-rotate(341deg) brightness(86%) contrast(116%);
+        }
+      }
+
+      .heder-btn__phone {
+        &:focus-visible,
+        &:hover {
+          animation: smooth-vibrate 0.6s ease-out;
+        }
+      }
+
+      .heder-btn__location {
+        &:focus-visible,
+        &:hover {
+          animation: bounce 0.8s ease-out 1;
+        }
+      }
+    }
+  }
+
+  @keyframes smooth-vibrate {
+    0% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(10deg);
+    }
+    50% {
+      transform: rotate(-10deg);
+    }
+    75% {
+      transform: rotate(2deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    30% {
+      transform: translateY(-10px);
+    }
+    50% {
+      transform: translateY(0);
+    }
+    70% {
+      transform: translateY(-5px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+}

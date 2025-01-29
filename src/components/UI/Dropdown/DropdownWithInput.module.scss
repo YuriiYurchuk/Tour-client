@@ -1,0 +1,135 @@
+@use "../../../styles/variables" as vars;
+
+.ui-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.input-label {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.8125rem;
+  padding: 0 0.25rem;
+  font: 300 1rem / 1 vars.$font-roboto;
+  color: #888;
+  background: vars.$color-white;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.input-filled ~ .input-label,
+.input:focus ~ .input-label {
+  top: 0.0625rem;
+  color: vars.$color-text;
+  transform: translateY(-50%) scale(0.85);
+}
+
+.input {
+  width: vars.$input-width-default;
+  padding: 0.625rem 1.25rem;
+  border: vars.$border-input;
+  border-radius: 1.875rem;
+  font: 400 1rem / 1 vars.$font-roboto;
+  color: vars.$color-text;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    border-color: vars.$border-color;
+  }
+
+  &:disabled {
+    background-color: #f5f5f5;
+    border-color: #e0e0e0;
+    cursor: not-allowed;
+  }
+
+  &::placeholder {
+    color: transparent;
+  }
+}
+
+.input-error {
+  border-color: $color-error;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  max-height: 12.5rem;
+  padding: 0;
+  margin-top: 0.5rem;
+  background-color: vars.$color-white;
+  border: vars.$border-drop;
+  border-radius: 0.9375rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.dropdown-button {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &:focus {
+    outline: none;
+    background-color: #f3f1ff;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #f5f5f5;
+    color: #bbb;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 4px;
+  margin-block: 10px;
+}
+
+.dropdown-item {
+  padding: 0.75rem;
+  font: 400 1rem / 1 vars.$font-roboto;
+  color: vars.$color-text;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #f3f1ff;
+  }
+}
+
+.dropdown-item:active {
+  background-color: #ddd;
+}
+
+.error-message {
+  padding-left: 1rem;
+  color: vars.$color-error;
+  font-size: 0.875rem;
+}

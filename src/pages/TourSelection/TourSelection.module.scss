@@ -1,0 +1,99 @@
+@use "../../styles/variables.scss" as vars;
+
+.tour-selection {
+  .hotel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
+  }
+
+  .results-header {
+    margin-top: clamp(2.5rem, 5vw, 3.75rem);
+
+    .results-title {
+      font-size: clamp(1.75rem, 2.5vw, 2.75rem);
+      color: vars.$color-text;
+      font-weight: 500;
+
+      .results-count {
+        font-size: 1rem;
+        font-weight: 300;
+      }
+    }
+  }
+
+  .controls-wrapper {
+    margin-block: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 640px) {
+      flex-direction: column;
+      align-items: start;
+      gap: 10px;
+    }
+
+    .map-filter {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .btn-map {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      outline: none;
+      transition: color 0.3s;
+
+      &:focus-visible,
+      &:hover {
+        color: #898989;
+      }
+
+      @media (pointer: coarse) {
+        &:hover {
+          color: inherit;
+        }
+      }
+    }
+
+    .btn-filter span {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-right: 20px;
+
+      .filter-badge {
+        position: absolute;
+        font: 500 0.625rem / 1 vars.$font-roboto;
+        color: vars.$color-white;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        right: 0;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background-color: vars.$color-text;
+        top: -5px;
+      }
+    }
+  }
+
+  .contact-form-wrapper {
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    height: auto;
+    min-height: 450px;
+    background-image: url("../../assets/images/bg-form3.webp");
+    background-size: cover;
+    background-position: center;
+    padding: 70px 0;
+  }
+}

@@ -1,0 +1,43 @@
+@use "../../styles/variables.scss" as vars;
+
+.custom-marker {
+  background-color: vars.$color-white;
+  width: 100%;
+  border-radius: 30px;
+  text-align: center;
+  font: 300 0.875rem / 1 vars.$font-roboto;
+  padding: 5px;
+  color: vars.$color-text;
+}
+
+.markerContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper-maps {
+  position: relative;
+
+  .completed {
+    position: absolute;
+    z-index: 600;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px;
+    border-radius: 30px;
+    top: 20px;
+    right: 10px;
+
+    p {
+      font: 300 0.875rem / 1 vars.$font-roboto;
+    }
+  }
+}
+
+.modal-maps {
+  max-width: 1000px;
+}
+
+.content-maps {
+  padding: 60px 20px 20px 30px;
+}

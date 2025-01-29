@@ -1,0 +1,17 @@
+@media (max-width: 767px) {
+  .auth-title {
+    font-size: 50px;
+  }
+}
+
+@media (max-width: 590px) {
+  .aside-auth {
+    min-height: 100vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .aside-auth {
+    padding-left: 10px;
+  }
+}

@@ -1,0 +1,41 @@
+@use "variables" as *;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: $color-text;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-transform: uppercase;
+}
+
+h1 {
+  font: 900 6.25rem / 1.35 $font-roboto;
+  color: #fff;
+}
+
+h2 {
+  font: 400 1.75rem / 1 $font-roboto;
+  color: #fff;
+}
+
+h3 {
+  font: 500 2.75rem / 1 $font-roboto;
+}
+
+h4 {
+  font: 300 1.5rem / 1 $font-roboto;
+}
+
+p {
+  font: 300 1rem / 1 $font-roboto;
+}
+

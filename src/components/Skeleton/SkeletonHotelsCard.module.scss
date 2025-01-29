@@ -1,0 +1,173 @@
+.skeleton-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
+
+  .skeleton-slide {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 0.5fr;
+    gap: 20px;
+    border: 1.5px solid #d4d4d4;
+    border-radius: 30px;
+    overflow: hidden;
+    min-height: 280px;
+    position: relative;
+    animation: skeleton-loading 1.5s infinite;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+
+    @media (max-width: 950px) {
+      grid-template-columns: 1fr 1fr 0.5fr;
+    }
+
+    @media (max-width: 750px) {
+      grid-template-columns: 1fr;
+    }
+
+    .section-img {
+      min-height: 280px;
+    }
+
+    .section-img,
+    .county-city,
+    .name,
+    .skeleton-star,
+    .rating-reviews,
+    .calendar,
+    .food,
+    .skeleton-amenity,
+    .season,
+    .price,
+    .button {
+      animation: skeleton-loading 1.5s infinite;
+      background: linear-gradient(90deg, #e2e2e2 25%, #d0d0d0 50%, #e2e2e2 75%);
+      background-size: 200% 100%;
+    }
+
+    .section-content {
+      padding-block: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      @media (max-width: 750px) {
+        padding: 0;
+        padding-inline: 20px;
+      }
+
+      .county-city {
+        width: 40%;
+        height: 20px;
+        margin-bottom: 6px;
+      }
+
+      .name {
+        width: 35%;
+        height: 20px;
+        margin-bottom: 6px;
+      }
+
+      .skeleton-stars {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 10px;
+
+        .skeleton-star {
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+        }
+      }
+
+      .rating-reviews {
+        width: 40%;
+        height: 20px;
+      }
+
+      .info {
+        display: flex;
+        align-items: end;
+        gap: 20px;
+        flex: 1;
+
+        .calendar-food {
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          gap: 10px;
+
+          .calendar,
+          .food {
+            width: 50%;
+            height: 20px;
+          }
+        }
+
+        .skeleton-amenities {
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          gap: 6px;
+          align-items: center;
+
+          .skeleton-amenity {
+            width: 50%;
+            height: 20px;
+          }
+        }
+      }
+    }
+    .section-footer {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .season-block {
+        display: flex;
+        justify-content: end;
+
+        @media (max-width: 750px) {
+          display: none;
+        }
+
+        .season {
+          width: 50%;
+          height: 20px;
+        }
+      }
+
+      .price-button {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .price-block {
+          display: flex;
+          justify-content: end;
+
+          .price {
+            width: 50%;
+            height: 20px;
+          }
+        }
+
+        .button {
+          width: 100%;
+          height: 30px;
+          border-radius: 30px;
+        }
+      }
+    }
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

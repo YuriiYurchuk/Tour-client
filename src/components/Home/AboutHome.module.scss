@@ -1,0 +1,38 @@
+@use "../../styles/variables.scss" as vars;
+
+.section-about {
+  background-color: #f8f8f8;
+  padding: 100px 0;
+  margin-bottom: 100px;
+
+  .header-about {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+
+    .about-text {
+      text-align: center;
+      text-transform: uppercase;
+
+      h2 {
+        font: 500 clamp(1.75rem, 2.5vw, 2.75rem) / 1 vars.$font-roboto;
+        color: vars.$color-text;
+        margin-bottom: 5px;
+      }
+
+      p {
+        font: 300 clamp(1rem, 2.5vw, 1rem) / 1 vars.$font-roboto;
+        color: vars.$color-text;
+      }
+    }
+
+    .about-title {
+      text-transform: none;
+      font: 400 clamp(2.25rem, 2.5vw, 3.25rem) / 0.1 vars.$font-millanova;
+      color: #d4d4d4;
+      margin-top: 70px;
+    }
+  }
+}

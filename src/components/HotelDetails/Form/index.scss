@@ -1,0 +1,123 @@
+@use "../../../styles/variables.scss" as vars;
+
+.react-calendar {
+  width: 450px;
+  max-width: 100%;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  color: vars.$color-text;
+
+  .react-calendar__tile {
+    position: relative;
+    background: none;
+    text-align: center;
+    font: 500 1rem / 1 vars.$font-roboto;
+
+    &::after {
+      content: attr(data-price);
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      color: #666;
+    }
+
+    &:hover {
+      background-color: #f8f8f8;
+    }
+
+    &--active {
+      background-color: #e7e4fc !important;
+      color: vars.$color-text;
+
+      &::after {
+        color: white;
+      }
+    }
+
+    &--disabled {
+      background-color: #f0f0f0;
+      color: #ccc;
+      cursor: not-allowed;
+
+      &::after {
+        color: #ccc;
+      }
+    }
+  }
+
+  .react-calendar__month-view__weekdays {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: 2px solid vars.$color-text;
+    margin-bottom: 10px;
+
+    abbr {
+      text-decoration: none;
+    }
+  }
+
+  .react-calendar__navigation {
+    display: flex;
+    margin-bottom: 10px;
+
+    button {
+      min-width: 44px;
+      background: none;
+      border: none;
+      padding: 5px;
+
+      &:hover {
+        background-color: #f8f8f8;
+      }
+
+      &:disabled {
+        background-color: #f0f0f0;
+      }
+    }
+  }
+
+  .react-calendar__tile--rangeStart {
+    background: transparent !important;
+    border: 2px solid #463998;
+    color: vars.$color-text;
+    border-radius: 4px;
+
+    &::after {
+      color: white;
+    }
+  }
+
+  .react-calendar__tile--rangeEnd {
+    background: transparent !important;
+    border: 2px solid #463998;
+    color: vars.$color-text;
+    border-radius: 4px;
+
+    &::after {
+      color: white;
+    }
+  }
+
+  .react-calendar__tile--rangeBetween {
+    background-color: #e6f3ff;
+
+    &::after {
+      color: #666;
+    }
+  }
+}
+
+.react-calendar__navigation {
+  color: vars.$color-text;
+  font: 500 1rem / 1 vars.$font-roboto;
+}
+
+.react-calendar__month-view__weekdays {
+  color: vars.$color-text;
+  font: 500 1rem / 1 vars.$font-roboto;
+}

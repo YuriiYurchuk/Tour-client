@@ -1,0 +1,34 @@
+@use "../../styles/variables.scss" as vars;
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 1.875rem;
+  font: 300 1rem / 1 vars.$font-roboto;
+
+  .active-link {
+    color: vars.$color-text;
+    outline: none;
+    transition: color 0.5s;
+    padding-block: 6px;
+    text-transform: capitalize;
+
+    &:hover,
+    &:focus-visible {
+      color: #a1a1a1;
+    }
+  }
+
+  .inactive-link {
+    color: #a1a1a1;
+    outline: none;
+    transition: color 0.5s;
+    padding: 6px 6px 6px 0;
+
+    &:hover,
+    &:focus-visible {
+      color: vars.$color-text;
+    }
+  }
+}

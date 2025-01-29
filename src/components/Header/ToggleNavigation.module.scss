@@ -1,0 +1,232 @@
+@use "../../styles/variables.scss" as vars;
+
+:global(body.menu-open) {
+  overflow: hidden;
+  height: 100%;
+}
+
+.toggle {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  width: 3.75rem;
+  height: 2.5rem;
+  cursor: pointer;
+
+  @media (max-width: 1000px) {
+    margin-left: 20px;
+  }
+
+  span {
+    display: block;
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    height: 2px;
+    background-color: vars.$color-text;
+    transition: background-color 0s 0.3s;
+
+    &::before {
+      position: absolute;
+      display: block;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: vars.$color-text;
+      content: "";
+      top: -9px;
+      transition-property: top, transform;
+      transition-duration: 0.3s, 0.3s;
+      transition-delay: 0.3s, 0s;
+    }
+
+    &::after {
+      position: absolute;
+      display: block;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: vars.$color-text;
+      content: "";
+      bottom: -9px;
+      transition-property: bottom, transform;
+      transition-duration: 0.3s, 0.3s;
+      transition-delay: 0.3s, 0s;
+    }
+  }
+
+  &.open {
+    span {
+      background: none;
+    }
+
+    span::before {
+      top: 0;
+      transform: rotate(45deg);
+      background-color: vars.$color-text;
+      transition-delay: 0s, 0.3s;
+    }
+
+    span::after {
+      bottom: 0;
+      transform: rotate(-45deg);
+      background-color: vars.$color-text;
+      transition-delay: 0s, 0.3s;
+    }
+  }
+
+  &.close {
+    span {
+      background: vars.$color-text;
+    }
+
+    span::before {
+      top: -9px;
+      transform: rotate(0deg);
+      transition-delay: 0.3s, 0s;
+    }
+
+    span::after {
+      bottom: -9px;
+      transform: rotate(0deg);
+      transition-delay: 0.3s, 0s;
+    }
+  }
+}
+
+.toggle-menu {
+  position: absolute;
+  z-index: 1001;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateY(-20px);
+  visibility: hidden;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease, opacity 0.5s ease, visibility 0s 0.5s;
+
+  &.open {
+    opacity: 1;
+    transform: translateY(25px);
+    visibility: visible;
+    transition: transform 0.5s, opacity 0.5s, visibility 0s 0s;
+
+    @media (max-width: 600px) {
+      transform: translateY(0);
+      top: 0;
+      overflow: auto;
+      padding-bottom: 30px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    height: 100vh;
+    padding-inline: 30px;
+    transform: translateY(0);
+    top: 0;
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: end;
+
+    .mobil-button {
+      filter: brightness(0) saturate(100%);
+      margin-top: 40px;
+
+      @media (min-width: 600px) {
+        display: none;
+      }
+    }
+  }
+
+  .toggle-menu__nav {
+    margin: 3.125rem 0;
+  }
+
+  .toggle-menu__list {
+    display: flex;
+    justify-content: center;
+    gap: 6.25rem;
+
+    @media (max-width: 700px) {
+      gap: 4.375rem;
+    }
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .menu-category-title {
+      font: 500 1rem / 1 vars.$font-roboto;
+      margin-bottom: 1.25rem;
+
+      @media (max-width: 600px) {
+        margin-bottom: 0.625rem;
+      }
+    }
+
+    .menu-category-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      @media (max-width: 600px) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .menu-category-link {
+        position: relative;
+        display: inline-block;
+        font: 300 1rem / 1 vars.$font-roboto;
+
+        &::after {
+          content: " ";
+          position: absolute;
+          bottom: -3px;
+          left: 50%;
+          width: 0;
+          height: 1px;
+          background-color: black;
+          transition: width 0.4s;
+          transform: translateX(-50%);
+        }
+
+        &:focus-visible {
+          outline: none;
+          border: none;
+        }
+
+        &:focus-visible::after,
+        &:hover::after {
+          width: 100%;
+        }
+
+        &.active::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .header-buttons__toggle {
+    @media (min-width: 600px) {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      justify-content: space-between;
+    }
+
+    .heder-btn__phone {
+      @media (max-width: 600px) {
+        margin-right: 20px;
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+.overlay {
+  background: none;
+}
+
+.modal-calendar {
+  box-shadow: 0 4px 20px 0 rgba(43, 43, 51, 0.2);
+  border-radius: 30px;
+  max-width: 450px;
+  z-index: 10000;
+}
