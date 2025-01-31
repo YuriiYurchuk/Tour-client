@@ -62,134 +62,207 @@ const HotelDetails = () => {
     <>
       <Breadcrumbs />
       <section className={`container ${styles["container-details"]}`}>
-        <div className={styles["description-form"]}>
-          <div className={styles["gallery-container"]}>
-            <Gallery hotelGallery={hotel.gallery} />
-          </div>
-          <div className={styles["form-container"]}>
-            <div className={styles["description-mobile"]}>
-              <motion.p
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.5 }}
-                variants={animationsDetails.appearanceLeft}
-              >
-                {hotel.country}, {hotel.city}
-              </motion.p>
-              <motion.h4
-                className={styles["hotel-name"]}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.5 }}
-                variants={animationsDetails.appearanceLeft}
-              >
-                {hotel.name}
-              </motion.h4>
-              <div className="flex gap-3 items-center mb-7">
-                <motion.div
-                  className={styles["star-rating"]}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.5 }}
-                  variants={animationsDetails.appearanceTop}
-                >
-                  {Array.from({ length: hotel.star_rating }, (_, index) => (
-                    <img key={`star-${index + 1}`} src={star} alt="Star" />
-                  ))}
-                </motion.div>
+        <div className="">
+          <div className={styles["description-form"]}>
+            <div className={styles["gallery-container"]}>
+              <Gallery hotelGallery={hotel.gallery} />
+            </div>
+            <div className={styles["form-container1"]}>
+              <div className={styles["description-mobile"]}>
                 <motion.p
-                  className={styles["review-info"]}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.5 }}
-                  variants={animationsDetails.appearanceTop}
+                  variants={animationsDetails.appearanceLeft}
                 >
-                  <span className={styles["rating"]}>
-                    {calculateAverage(hotel.average_rating) ?? 0}
+                  {hotel.country}, {hotel.city}
+                </motion.p>
+                <motion.h4
+                  className={styles["hotel-name"]}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.5 }}
+                  variants={animationsDetails.appearanceLeft}
+                >
+                  {hotel.name}
+                </motion.h4>
+                <div className="flex gap-3 items-center mb-7">
+                  <motion.div
+                    className={styles["star-rating"]}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.5 }}
+                    variants={animationsDetails.appearanceTop}
+                  >
+                    {Array.from({ length: hotel.star_rating }, (_, index) => (
+                      <img key={`star-${index + 1}`} src={star} alt="Star" />
+                    ))}
+                  </motion.div>
+                  <motion.p
+                    className={styles["review-info"]}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.5 }}
+                    variants={animationsDetails.appearanceTop}
+                  >
+                    <span className={styles["rating"]}>
+                      {calculateAverage(hotel.average_rating) ?? 0}
+                    </span>{" "}
+                    {hotel.review_count} відгуків
+                  </motion.p>
+                </div>
+                <motion.p
+                  className={styles["price-text"]}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.5 }}
+                  variants={animationsDetails.appearanceLeft}
+                >
+                  <span className={styles["price-amount"]}>
+                    {hotel.tour_price} ₴
                   </span>{" "}
-                  {hotel.review_count} відгуків
+                  / за 1 людину
                 </motion.p>
               </div>
-              <motion.p
-                className={styles["price-text"]}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.5 }}
-                variants={animationsDetails.appearanceLeft}
-              >
-                <span className={styles["price-amount"]}>
-                  {hotel.tour_price} ₴
-                </span>{" "}
-                / за 1 людину
-              </motion.p>
+              <Form
+                price={hotel.tour_price}
+                mealTypes={hotel.meal_types}
+                roomTypes={hotel.room_types}
+                activeMealType={activeMealType}
+                setActiveMealType={setActiveMealType}
+                activeRoomType={activeRoomType}
+                setActiveRoomType={setActiveRoomType}
+                country={hotel.country}
+                city={hotel.city}
+              />
             </div>
-            <Form
-              price={hotel.tour_price}
-              mealTypes={hotel.meal_types}
+          </div>
+          <section className={styles["content-container"]}>
+            <Description
+              country={hotel.country}
+              city={hotel.city}
+              name={hotel.name}
+              starRating={hotel.star_rating}
+              averageRating={calculateAverage(hotel.average_rating)}
+              reviewCount={hotel.review_count}
+              tourPrice={hotel.tour_price}
+              description={hotel.description}
+              amenities={
+                Array.isArray(hotel.amenities)
+                  ? hotel.amenities.map((item) => item.description).flat()
+                  : []
+              }
+            />
+            <Room
               roomTypes={hotel.room_types}
-              activeMealType={activeMealType}
-              setActiveMealType={setActiveMealType}
               activeRoomType={activeRoomType}
               setActiveRoomType={setActiveRoomType}
             />
-          </div>
+            <Rating
+              averageRating={calculateAverage(hotel.average_rating)}
+              reviewCount={hotel.review_count}
+              animation={calculateAverage(hotel.rating?.animation_avg)}
+              beach={calculateAverage(hotel.rating?.beach_avg)}
+              food={calculateAverage(hotel.rating?.food_avg)}
+              price={calculateAverage(hotel.rating?.price_avg)}
+              room={calculateAverage(hotel.rating?.room_avg)}
+              staff={calculateAverage(hotel.rating?.staff_avg)}
+              reviews={hotel.reviews}
+            />
+            <Features
+              surroundings={mapDescriptions(hotel.surroundings)}
+              communication={mapDescriptions(hotel.communication)}
+              airportDistance={mapDescriptions(hotel.airport)}
+              latitude={hotel.location.latitude}
+              longitude={hotel.location.longitude}
+              beach={mapDescriptions(hotel.beach)}
+              general={mapDescriptions(hotel.general)}
+              activities={mapDescriptions(hotel.activities)}
+              pools={mapDescriptions(hotel.pools)}
+              spa={mapDescriptions(hotel.spas)}
+              service={mapDescriptions(hotel.services)}
+              contact={mapDescriptions(hotel.contact)}
+              kids={mapDescriptions(hotel.kids)}
+            />
+            <Food
+              restaurants={hotel.restaurants
+                .map((restaurant) => restaurant.description)
+                .flat()}
+              mealTypes={hotel.meal_types}
+              activeMealType={activeMealType}
+              setActiveMealType={setActiveMealType}
+            />
+          </section>
         </div>
-        <section className={styles["content-container"]}>
-          <Description
-            country={hotel.country}
-            city={hotel.city}
-            name={hotel.name}
-            starRating={hotel.star_rating}
-            averageRating={calculateAverage(hotel.average_rating)}
-            reviewCount={hotel.review_count}
-            tourPrice={hotel.tour_price}
-            description={hotel.description}
-            amenities={
-              Array.isArray(hotel.amenities)
-                ? hotel.amenities.map((item) => item.description).flat()
-                : []
-            }
-          />
-          <Room
-            roomTypes={hotel.room_types}
-            activeRoomType={activeRoomType}
-            setActiveRoomType={setActiveRoomType}
-          />
-          <Rating
-            averageRating={calculateAverage(hotel.average_rating)}
-            reviewCount={hotel.review_count}
-            animation={calculateAverage(hotel.rating?.animation_avg)}
-            beach={calculateAverage(hotel.rating?.beach_avg)}
-            food={calculateAverage(hotel.rating?.food_avg)}
-            price={calculateAverage(hotel.rating?.price_avg)}
-            room={calculateAverage(hotel.rating?.room_avg)}
-            staff={calculateAverage(hotel.rating?.staff_avg)}
-            reviews={hotel.reviews}
-          />
-          <Features
-            surroundings={mapDescriptions(hotel.surroundings)}
-            communication={mapDescriptions(hotel.communication)}
-            airportDistance={mapDescriptions(hotel.airport)}
-            latitude={hotel.location.latitude}
-            longitude={hotel.location.longitude}
-            beach={mapDescriptions(hotel.beach)}
-            general={mapDescriptions(hotel.general)}
-            activities={mapDescriptions(hotel.activities)}
-            pools={mapDescriptions(hotel.pools)}
-            spa={mapDescriptions(hotel.spas)}
-            service={mapDescriptions(hotel.services)}
-            contact={mapDescriptions(hotel.contact)}
-            kids={mapDescriptions(hotel.kids)}
-          />
-          <Food
-            restaurants={hotel.restaurants
-              .map((restaurant) => restaurant.description)
-              .flat()}
+        <div className={styles["form-container"]}>
+          <div className={styles["description-mobile"]}>
+            <motion.p
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
+              variants={animationsDetails.appearanceLeft}
+            >
+              {hotel.country}, {hotel.city}
+            </motion.p>
+            <motion.h4
+              className={styles["hotel-name"]}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
+              variants={animationsDetails.appearanceLeft}
+            >
+              {hotel.name}
+            </motion.h4>
+            <div className="flex gap-3 items-center mb-7">
+              <motion.div
+                className={styles["star-rating"]}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.5 }}
+                variants={animationsDetails.appearanceTop}
+              >
+                {Array.from({ length: hotel.star_rating }, (_, index) => (
+                  <img key={`star-${index + 1}`} src={star} alt="Star" />
+                ))}
+              </motion.div>
+              <motion.p
+                className={styles["review-info"]}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.5 }}
+                variants={animationsDetails.appearanceTop}
+              >
+                <span className={styles["rating"]}>
+                  {calculateAverage(hotel.average_rating) ?? 0}
+                </span>{" "}
+                {hotel.review_count} відгуків
+              </motion.p>
+            </div>
+            <motion.p
+              className={styles["price-text"]}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
+              variants={animationsDetails.appearanceLeft}
+            >
+              <span className={styles["price-amount"]}>
+                {hotel.tour_price} ₴
+              </span>{" "}
+              / за 1 людину
+            </motion.p>
+          </div>
+          <Form
+            price={hotel.tour_price}
             mealTypes={hotel.meal_types}
+            roomTypes={hotel.room_types}
             activeMealType={activeMealType}
             setActiveMealType={setActiveMealType}
+            activeRoomType={activeRoomType}
+            setActiveRoomType={setActiveRoomType}
+            country={hotel.country}
+            city={hotel.city}
           />
-        </section>
+        </div>
       </section>
     </>
   );

@@ -28,9 +28,11 @@
 .container-details {
   margin-top: 20px;
   margin-bottom: 11.25rem;
+  display: flex;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1050px) {
     margin-bottom: 8.75rem;
+    display: block;
   }
   @media (max-width: 500px) {
     margin-bottom: 7.5rem;
@@ -39,14 +41,54 @@
   .description-form {
     display: flex;
     justify-content: space-between;
+    gap: 30px;
+
+    @media (max-width: 850px) {
+      flex-direction: column;
+    }
+
+    .gallery-container {
+      flex: 1;
+      min-width: 200px;
+      max-width: 730px;
+      flex-shrink: 1;
+    }
+
+    .form-container1 {
+      display: none;
+      flex: 1;
+      max-width: 325px;
+
+      @media (max-width: 1050px) {
+        display: inline-block;
+      }
+
+      @media (max-width: 850px) {
+        max-width: none;
+      }
+    }
+  }
+
+  .form-container {
+    flex: 1;
+    position: sticky;
+    z-index: 10;
+    transform: translateY(-30px);
+    top: 30px;
+    align-self: start;
+    padding: 30px;
+    overflow: none;
+
+    @media (max-width: 1050px) {
+      display: none;
+    }
   }
 
   .description-mobile {
     display: none;
 
-    @media (max-width: 550px) {
-      display: inline-block;
-      padding-inline: 30px;
+    @media (max-width: 850px) {
+      display: flow;
     }
 
     .hotel-name {
@@ -90,7 +132,7 @@
   .content-container {
     max-width: 740px;
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1050px) {
       max-width: 930px;
     }
   }

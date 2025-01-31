@@ -21,7 +21,7 @@ const ModalCalendar = ({ isOpen, onClose, onDateSelect }) => {
 
   const handleDateChange = (dates) => {
     setDateRange(dates);
-    setError(""); // Очистити помилку при зміні дат
+    setError(""); 
   };
 
   const handleConfirm = () => {
@@ -52,7 +52,7 @@ const ModalCalendar = ({ isOpen, onClose, onDateSelect }) => {
         minDate={minDate}
         defaultValue={minDate}
       />
-      <div className="flex flex-col mt-4">
+      <div className="flex flex-col">
         <div className="flex justify-between items-center">
           <div>
             <FontAwesomeIcon
@@ -64,19 +64,19 @@ const ModalCalendar = ({ isOpen, onClose, onDateSelect }) => {
             />
             <Tooltip id="calendar-tooltip">
               Виберіть діапазон дат, починаючи з{" "}
-              {minDate.toLocaleDateString("uk-UA")}. Мінімальний діапазон — 5
-              днів.
+              {minDate.toLocaleDateString("uk-UA")}. <br /> Мінімальний діапазон
+              — 5 днів.
             </Tooltip>
           </div>
           <button
             onClick={handleConfirm}
             disabled={!dateRange[0] || !dateRange[1]}
-            className="bg-stone-900 text-white py-2 px-4 rounded disabled:opacity-50"
+            className="uppercase bg-stone-900 text-white py-2 px-4 rounded-3xl disabled:opacity-50 hover:bg-stone-700 transition-colors duration-300"
           >
-            Підтвердити вибір
+            Вибрати
           </button>
         </div>
-        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+        {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
       </div>
     </Modal>
   );
