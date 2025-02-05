@@ -35,10 +35,15 @@ const Header = () => {
   const authState = useSelector((state) => state.auth);
   const [isPhoneOpen, setIsPhoneOpen] = useState(false);
   const [isLocationOpen, setIsLocationOpen] = useState(false);
+  const accessToken = useSelector((state) => state.auth.accessToken);
 
   useEffect(() => {
     dispatch(restoreUserFromToken());
-  }, [dispatch]);
+
+    if (!accessToken) {
+      dispatch(refreshUserToken());
+    }
+  }, [dispatch, accessToken]);
 
   useEffect(() => {
     if (authState.accessToken) {

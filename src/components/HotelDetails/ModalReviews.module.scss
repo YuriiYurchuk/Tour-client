@@ -1,0 +1,56 @@
+@use "../../styles/variables.scss" as vars;
+
+.modal-reviews {
+  max-width: 480px;
+
+  @media (max-width: 500px) {
+    max-width: 500px;
+  }
+}
+
+.reviews-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .ratings-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+
+    @media (max-width: 500px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .reviews-textarea textarea {
+    resize: none;
+    min-height: 120px;
+  }
+
+  .submit-button {
+    width: 100%;
+    padding: 12px;
+    background-color: vars.$button-background;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: vars.$button-hover;
+    }
+
+    @media (pointer: coarse) {
+      &:hover {
+        background-color: vars.$button-background;
+      }
+    }
+  }
+}

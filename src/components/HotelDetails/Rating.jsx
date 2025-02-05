@@ -1,9 +1,12 @@
+import { useState } from "react";
 import styles from "./Rating.module.scss";
 import PropTypes from "prop-types";
 import { formatShortMonthDayYear } from "@utils/formatDate";
 import { MButton } from "@components/UI/Button/Button";
 import { motion } from "framer-motion";
 import { animationsDetails } from "./animations";
+import ModalRating from "./ModalRating";
+import ModalReviews from "./ModalReviews";
 
 const Rating = ({
   averageRating,
@@ -15,7 +18,11 @@ const Rating = ({
   room,
   staff,
   reviews,
+  hotelId,
 }) => {
+  const [isRatingOpen, setIsRatingOpen] = useState(false);
+  const [isReviewsOpen, setIsReviewsOpen] = useState(false);
+
   return (
     <section className={styles["section-rating"]}>
       <motion.h2
@@ -86,7 +93,7 @@ const Rating = ({
         ))}
       </motion.div>
       <motion.div
-        className="flex justify-center mt-5"
+        className="flex items-center gap-4 mt-5 flex-col"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
@@ -97,11 +104,37 @@ const Rating = ({
             Новий готель, відгуків немає
           </p>
         ) : (
-          <MButton className={styles["reviews-btn"]}>
+          <MButton
+            onClick={() => setIsRatingOpen("true")}
+            className={styles["reviews-btn"]}
+          >
             Показати всі відгуки
           </MButton>
         )}
+        <MButton
+          onClick={() => setIsReviewsOpen("true")}
+          className={styles["reviews-btn"]}
+        >
+          Залишити відгук
+        </MButton>
       </motion.div>
+      <ModalRating
+        isOpen={isRatingOpen}
+        onClose={() => setIsRatingOpen(false)}
+        averageRating={averageRating}
+        reviewCount={reviewCount}
+        animation={animation}
+        beach={beach}
+        food={food}
+        price={price}
+        room={room}
+        staff={staff}
+      />
+      <ModalReviews
+        isOpen={isReviewsOpen}
+        onClose={() => setIsReviewsOpen(false)}
+        hotelId={hotelId}
+      />
     </section>
   );
 };
@@ -126,6 +159,7 @@ Rating.propTypes = {
       comment: PropTypes.string.isRequired,
     })
   ).isRequired,
+  hotelId: PropTypes.number.isRequired,
 };
 
 export default Rating;

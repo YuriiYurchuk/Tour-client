@@ -39,16 +39,28 @@ const Input = ({
 
   return (
     <div className={`${styles["ui-input"]} ${className}`}>
-      <input
-        {...field}
-        id={name}
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        aria-invalid={!!error}
-        aria-describedby={error ? `${name}-error` : undefined}
-        className={inputClasses}
-      />
+      {type === "textarea" ? (
+        <textarea
+          {...field}
+          id={name}
+          placeholder={placeholder}
+          disabled={disabled}
+          aria-invalid={!!error}
+          aria-describedby={error ? `${name}-error` : undefined}
+          className={inputClasses}
+        />
+      ) : (
+        <input
+          {...field}
+          id={name}
+          type={type}
+          placeholder={placeholder}
+          disabled={disabled}
+          aria-invalid={!!error}
+          aria-describedby={error ? `${name}-error` : undefined}
+          className={inputClasses}
+        />
+      )}
       {label && (
         <label htmlFor={name} className={labelClasses}>
           {label}

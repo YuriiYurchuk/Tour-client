@@ -134,6 +134,7 @@ const HotelDetails = () => {
                 setActiveRoomType={setActiveRoomType}
                 country={hotel.country}
                 city={hotel.city}
+                id={hotel.id}
               />
             </div>
           </div>
@@ -168,6 +169,7 @@ const HotelDetails = () => {
               room={calculateAverage(hotel.rating?.room_avg)}
               staff={calculateAverage(hotel.rating?.staff_avg)}
               reviews={hotel.reviews}
+              hotelId={hotel.id}
             />
             <Features
               surroundings={mapDescriptions(hotel.surroundings)}
@@ -261,6 +263,7 @@ const HotelDetails = () => {
             setActiveRoomType={setActiveRoomType}
             country={hotel.country}
             city={hotel.city}
+            id={hotel.id}
           />
         </div>
       </section>

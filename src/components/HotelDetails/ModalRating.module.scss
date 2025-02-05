@@ -1,0 +1,93 @@
+@use "../../styles/variables.scss" as vars;
+
+.overlay {
+  justify-content: flex-end;
+  padding: 0;
+}
+
+.modal-rating {
+  margin: 0;
+  max-width: 480px;
+
+  @media (max-width: 500px) {
+    max-width: 500px;
+  }
+}
+
+.content-rating {
+  border-radius: 0;
+  height: 100%;
+}
+
+.title {
+  color: vars.$color-text;
+  text-transform: initial;
+  margin-top: -30px;
+  margin-bottom: 50px;
+}
+
+.review-info {
+  font-size: 0.875rem;
+  margin-bottom: 25px;
+
+  .rating {
+    background-color: vars.$color-indigo;
+    padding: 4px 10px;
+    border-radius: 30px;
+    font-weight: 400;
+    color: vars.$color-white;
+  }
+}
+
+.rating-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #d4d4d4;
+
+  .rating-value {
+    font-weight: 500;
+  }
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 50px;
+
+  .review-item {
+    background-color: #f8f8f8;
+    padding: 24px;
+    width: 100%;
+    border-radius: 30px;
+
+    .review-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+
+      .review-rating {
+        background-color: vars.$color-indigo;
+        color: vars.$color-white;
+        font-weight: 400;
+        font-size: 0.875rem;
+        padding: 4px 10px;
+        border-radius: 30px;
+      }
+
+      .review-user {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        margin-left: 10px;
+      }
+
+      .review-date {
+        font: 300 0.75rem / 1 vars.$font-roboto;
+        color: #6b6b6b;
+      }
+    }
+  }
+}
