@@ -110,40 +110,44 @@ const TourHot = () => {
   } else {
     content = (
       <div className={styles["hotel-list"]}>
-        {hotels.map((hotel) => (
-          <motion.div
-            key={hotel.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              opacity: { duration: 1, ease: "easeOut" },
-              y: { duration: 1, ease: "easeOut" },
-            }}
-            viewport={{ once: true, amount: 0.5 }}
-          >
-            <HotelCard
-              id={hotel.id}
-              name={hotel.name}
-              city={hotel.city}
-              country={hotel.country}
-              starRating={hotel.star_rating || 0}
-              averageRating={
-                hotel.average_rating
-                  ? Math.round(hotel.average_rating * 10) / 10
-                  : 0
-              }
-              reviewCount={hotel.review_count || 0}
-              isHotDeal={hotel.is_hot_deal}
-              tourPrice={Number(hotel.tour_price)}
-              tourStartDate={hotel.tour_start_date}
-              tourEndDate={hotel.tour_end_date}
-              includedMealTypes={hotel.included_meal_types}
-              season={hotel.season}
-              amenities={hotel.amenity || []}
-              hotelPhoto={`${imagesBaseUrl}${hotel.hotel_photos}`}
-            />
-          </motion.div>
-        ))}
+        {hotels.length === 0 ? (
+          <div className={styles["no-hotels"]}>Готелі відсутні</div>
+        ) : (
+          hotels.map((hotel) => (
+            <motion.div
+              key={hotel.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                opacity: { duration: 1, ease: "easeOut" },
+                y: { duration: 1, ease: "easeOut" },
+              }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
+              <HotelCard
+                id={hotel.id}
+                name={hotel.name}
+                city={hotel.city}
+                country={hotel.country}
+                starRating={hotel.star_rating || 0}
+                averageRating={
+                  hotel.average_rating
+                    ? Math.round(hotel.average_rating * 10) / 10
+                    : 0
+                }
+                reviewCount={hotel.review_count || 0}
+                isHotDeal={hotel.is_hot_deal}
+                tourPrice={Number(hotel.tour_price)}
+                tourStartDate={hotel.tour_start_date}
+                tourEndDate={hotel.tour_end_date}
+                includedMealTypes={hotel.included_meal_types}
+                season={hotel.season}
+                amenities={hotel.amenity || []}
+                hotelPhoto={`${imagesBaseUrl}${hotel.hotel_photos}`}
+              />
+            </motion.div>
+          ))
+        )}
       </div>
     );
   }

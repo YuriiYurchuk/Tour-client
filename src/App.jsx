@@ -26,6 +26,7 @@ const TourSelection = preload(() =>
 const TourHot = preload(() => import("@pages/TourHot/TourHot"));
 const HotelDetails = preload(() => import("@pages/HotelDetails/HotelDetails"));
 const Maps = preload(() => import("@pages/Map/Maps"));
+const Countries = preload(() => import("@pages/Countries/Countries"));
 
 const routes = [
   {
@@ -64,6 +65,10 @@ const routes = [
   {
     path: "/maps",
     element: <Maps />,
+  },
+  {
+    path: "/countries",
+    element: <Countries />,
   },
   {
     path: "/profile",

@@ -8,6 +8,12 @@
     margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
   }
 
+  .no-hotels {
+    text-align: center;
+    text-transform: uppercase;
+    font: 500 2rem / 1 vars.$font-roboto;
+  }
+
   .results-header {
     margin-top: clamp(2.5rem, 5vw, 3.75rem);
 

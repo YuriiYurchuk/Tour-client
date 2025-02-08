@@ -1,0 +1,63 @@
+@use "../../styles/variables.scss" as vars;
+
+.title {
+  margin-top: 3.75rem;
+  margin-bottom: 3.175rem;
+  color: vars.$color-text;
+  font-weight: 500;
+  font-size: clamp(1.75rem, 7vw, 2.75rem);
+}
+
+.container-countries {
+  columns: 300px;
+  width: 100%;
+
+  .group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 50px;
+
+    .letter {
+      font-size: clamp(1.75rem, 20vw, 5.25rem);
+      width: 55px;
+      text-align: center;
+      color: #d4d4d4;
+      font-weight: 400;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .country-card {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 10px;
+      background-color: #f8f8f8;
+      border-radius: 30px;
+      min-width: 256px;
+      width: 100%;
+      transition: background-color 0.4s;
+
+      &:hover {
+        background-color: #bbbbbb;
+      }
+
+      @media (pointer: coarse) {
+        &:hover {
+          background-color: #f8f8f8;
+        }
+      }
+
+      @media (max-width: 420px) {
+        min-width: 240px;
+      }
+      @media (max-width: 400px) {
+        min-width: 200px;
+      }
+    }
+  }
+}
