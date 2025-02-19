@@ -96,6 +96,7 @@ const Maps = () => {
       >
         {selectedHotel && (
           <HotelCard
+            id={selectedHotel.id}
             name={selectedHotel.name}
             city={selectedHotel.city}
             country={selectedHotel.country}

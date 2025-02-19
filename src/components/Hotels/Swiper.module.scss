@@ -1,0 +1,133 @@
+@use "../../styles/variables.scss" as vars;
+
+.title-popular {
+  font-size: clamp(1.75rem, 8vw, 2.75rem);
+  margin-top: 60px;
+}
+
+.title-rating {
+  font-size: clamp(1.75rem, 8vw, 2.75rem);
+}
+
+.text {
+  font-size: clamp(1rem, 10vw, 1.5rem);
+  margin-top: 5px;
+  text-transform: uppercase;
+}
+
+.swiper {
+  height: 330px;
+  margin-top: 40px;
+  margin-bottom: 140px;
+
+  @media (max-width: 600px) {
+    height: 500px;
+  }
+}
+
+.swiper-rating {
+  height: 330px;
+  margin-top: 40px;
+
+  @media (max-width: 600px) {
+    height: 500px;
+  }
+}
+
+.swiper-slide {
+  max-height: 280px;
+  max-width: 800px;
+  border-radius: 30px;
+  overflow: hidden;
+  display: flex;
+  border: 1.5px solid #d4d4d4;
+  background-color: #fff;
+
+  @media (max-width: 600px) {
+    max-height: 460px;
+  }
+}
+
+article {
+  height: 100%;
+  width: 100%;
+  display: flex;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.section-img {
+  height: 100%;
+  width: 100%;
+  max-width: 380px;
+
+  @media (max-width: 600px) {
+    max-height: 200px;
+    max-width: none;
+  }
+
+  img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.section-info {
+  padding: 25px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+
+  .hotel-location {
+    margin-bottom: 6px;
+    font-size: 1rem;
+  }
+
+  .hotel-mane {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  .stars {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+
+    .star-icon {
+      height: 18px;
+      width: 18px;
+    }
+  }
+
+  .hotel-review-rating {
+    font-size: 0.875rem;
+
+    .rating {
+      background-color: vars.$color-indigo;
+      padding: 4px 10px;
+      border-radius: 30px;
+      font-weight: 400;
+      color: vars.$color-white;
+    }
+  }
+
+  .amenities-list {
+    list-style-image: url("../../assets/images/check-icon.svg");
+    list-style-position: inside;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font: 300 0.875rem / 1 vars.$font-roboto;
+
+    li {
+      line-height: 1;
+      text-transform: lowercase;
+    }
+  }
+}

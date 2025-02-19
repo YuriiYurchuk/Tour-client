@@ -66,24 +66,35 @@ const HotelCard = ({
             {reviewCount} відгуків
           </p>
         </div>
-        <div className={styles["info"]}>
+        <div
+          className={`${styles["info"]} ${
+            !tourStartDate && !tourEndDate && !includedMealTypes
+              ? styles["info--empty"]
+              : ""
+          }`}
+        >
           <div>
-            <div className={styles["date-info"]}>
-              <img src={calendar} alt="Calendar icon" />
-              <p>
-                {formatMonthDay(tourStartDate)} -{" "}
-                {formatMonthDayYear(tourEndDate)}
-              </p>
-            </div>
-            <div className={styles["meal-info"]}>
-              <img src={food} alt="Food icon" />
-              <p>{includedMealTypes}</p>
-            </div>
+            {tourStartDate && tourEndDate && (
+              <div className={styles["date-info"]}>
+                <img src={calendar} alt="Calendar icon" />
+                <p>
+                  {formatMonthDay(tourStartDate)} -{" "}
+                  {formatMonthDayYear(tourEndDate)}
+                </p>
+              </div>
+            )}
+
+            {includedMealTypes && (
+              <div className={styles["meal-info"]}>
+                <img src={food} alt="Food icon" />
+                <p>{includedMealTypes}</p>
+              </div>
+            )}
           </div>
           <ul className={styles["amenities-list"]}>
             {amenities.length > 0 ? (
               amenities.map((amenity, index) => (
-                <li key={`amenity-${index + 1}`}>{amenity || "Без опису"}</li>
+                <li key={`amenity-${index + 1}`}>{amenity}</li>
               ))
             ) : (
               <li>Без опису</li>

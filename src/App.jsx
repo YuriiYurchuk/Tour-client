@@ -19,14 +19,17 @@ const AuthorizationPage = preload(() =>
 const AboutPage = preload(() => import("@pages/AboutUs/AboutUs"));
 const ContactsPage = preload(() => import("@pages/Contacts/Contacts"));
 const ReviewsPage = preload(() => import("@pages/Reviews/Reviews"));
-const Profile = preload(() => import("@pages/Profile/Profile"));
-const TourSelection = preload(() =>
+const ProfilePage = preload(() => import("@pages/Profile/Profile"));
+const TourSelectionPage = preload(() =>
   import("@pages/TourSelection/TourSelection")
 );
-const TourHot = preload(() => import("@pages/TourHot/TourHot"));
-const HotelDetails = preload(() => import("@pages/HotelDetails/HotelDetails"));
-const Maps = preload(() => import("@pages/Map/Maps"));
-const Countries = preload(() => import("@pages/Countries/Countries"));
+const TourHotPage = preload(() => import("@pages/TourHot/TourHot"));
+const HotelDetailsPage = preload(() =>
+  import("@pages/HotelDetails/HotelDetails")
+);
+const MapsPage = preload(() => import("@pages/Map/Maps"));
+const CountriesPage = preload(() => import("@pages/Countries/Countries"));
+const HotelsPage = preload(() => import("@pages/Hotels/Hotels"));
 
 const routes = [
   {
@@ -52,27 +55,31 @@ const routes = [
   },
   {
     path: "/tour-selection",
-    element: <TourSelection />,
+    element: <TourSelectionPage />,
   },
   {
     path: "/hot-tours",
-    element: <TourHot />,
+    element: <TourHotPage />,
   },
   {
     path: "/tour-selection/:id/:hotelName",
-    element: <HotelDetails />,
+    element: <HotelDetailsPage />,
   },
   {
     path: "/maps",
-    element: <Maps />,
+    element: <MapsPage />,
   },
   {
     path: "/countries",
-    element: <Countries />,
+    element: <CountriesPage />,
+  },
+  {
+    path: "/hotels",
+    element: <HotelsPage />,
   },
   {
     path: "/profile",
-    element: <Profile />,
+    element: <ProfilePage />,
     wrapper: PrivateRoute,
   },
 ];

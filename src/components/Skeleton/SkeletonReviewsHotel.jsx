@@ -1,6 +1,6 @@
-import styles from "./SkeletonHotelsCard.module.scss";
+import styles from "./SkeletonReviewsHotel.module.scss";
 
-export const SkeletonReviewsHotel= () => {
+export const SkeletonReviewsHotel = () => {
   const skeletonCards = [
     "skeleton-reviews-1",
     "skeleton-reviews-2",
@@ -17,12 +17,14 @@ export const SkeletonReviewsHotel= () => {
     <div className={styles["skeleton-container"]}>
       {skeletonCards.map((cardId) => (
         <article key={cardId} className={styles["skeleton-slide"]}>
-          <section>
-            <div></div>
-            <div></div>
-            <div></div>
+          <section className="flex justify-between">
+            <div className="flex">
+              <div className={styles["number"]}></div>
+              <div className={styles["name"]}></div>
+            </div>
+            <div className={styles["date"]}></div>
           </section>
-          <div></div>
+          <div className={styles["comment"]}></div>
         </article>
       ))}
     </div>

@@ -39,8 +39,6 @@ const HotelDetails = () => {
     fetchHotelDetails();
   }, [id]);
 
-  console.log(hotel);
-
   const mapDescriptions = (array) =>
     Array.isArray(array) ? array.map((item) => item.description).flat() : [];
   const calculateAverage = (value) => (value ? Math.round(value * 10) / 10 : 0);

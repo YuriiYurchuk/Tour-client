@@ -1,0 +1,72 @@
+.skeleton-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
+
+  .skeleton-slide {
+    border: 1.5px solid #d4d4d4;
+    border-radius: 30px;
+    padding: 30px;
+    overflow: hidden;
+    min-height: 240px;
+    position: relative;
+    animation: skeleton-loading 1.5s infinite;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+
+    @media (max-width: 950px) {
+      grid-template-columns: 1fr 1fr 0.5fr;
+    }
+
+    @media (max-width: 750px) {
+      grid-template-columns: 1fr;
+    }
+
+    .number {
+      width: 40px;
+      height: 20px;
+      border-radius: 30px;
+    }
+
+    .name {
+      width: 100px;
+      height: 20px;
+      margin-left: 10px;
+
+      @media (max-width: 320px) {
+        width: 50px;
+      }
+    }
+
+    .date {
+      width: 30%;
+      height: 20px;
+    }
+
+    .comment {
+      margin-top: 15px;
+      min-height: 150px;
+      border-radius: 30px;
+      width: 100%;
+    }
+
+    .number,
+    .name,
+    .date,
+    .comment {
+      animation: skeleton-loading 1.5s infinite;
+      background: linear-gradient(90deg, #e2e2e2 25%, #d0d0d0 50%, #e2e2e2 75%);
+      background-size: 200% 100%;
+    }
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

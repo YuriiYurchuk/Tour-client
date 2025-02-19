@@ -69,9 +69,11 @@ const Header = () => {
     >
       <header className="container">
         <div className={styles["header-wrapper"]}>
-          <NavLink className={styles["logo"]} to="/">
-            <motion.img {...animationsHeader.logo} src={logo} alt="Логотип" />
-          </NavLink>
+          <div className={styles["logo-wrapper"]}>
+            <NavLink className={styles["logo"]} to="/">
+              <motion.img {...animationsHeader.logo} src={logo} alt="Логотип" />
+            </NavLink>
+          </div>
           <nav className={styles["header-nav"]}>
             <ul className={styles["header-nav__menu"]}>
               {NAV_ITEMS.map((item, index) => (

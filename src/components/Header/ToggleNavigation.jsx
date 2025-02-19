@@ -39,11 +39,20 @@ const MenuCategory = ({ title, items }) => (
     <ul className={styles["menu-category-list"]}>
       <Each
         of={items}
-        render={({ to, label, style }, index) => (
+        render={({ to, label, style, onClick }, index) => (
           <li key={index}>
-            <NavLinkItem to={to} style={style}>
-              {label}
-            </NavLinkItem>
+            {to ? (
+              <NavLinkItem to={to} style={style}>
+                {label}
+              </NavLinkItem>
+            ) : (
+              <button
+                className={styles["menu-category-link"]}
+                onClick={onClick}
+              >
+                {label}
+              </button>
+            )}
           </li>
         )}
       />
@@ -72,6 +81,13 @@ const ToggleNavigation = () => {
 
   const handleLoginClick = () => {
     navigate("/auth");
+  };
+
+  const handleCountryClick = (countryName) => {
+    navigate({
+      pathname: "/tour-selection",
+      search: `?country=${encodeURIComponent(countryName)}&page=1`,
+    });
   };
 
   const toggleNavigation = () => {
@@ -129,12 +145,27 @@ const ToggleNavigation = () => {
             <MenuCategory
               title="Популярні країни"
               items={[
-                { to: "/*", label: "Туреччина" },
-                { to: "/*", label: "Єгипет" },
-                { to: "/*", label: "Мальдіви" },
-                { to: "/*", label: "ОАЕ" },
-                { to: "/*", label: "Куба" },
-                { to: "/*", label: "Шрі-Ланка" },
+                {
+                  label: "Туреччина",
+                  onClick: () => handleCountryClick("Туреччина"),
+                },
+                {
+                  label: "Нідерланди",
+                  onClick: () => handleCountryClick("Нідерланди"),
+                },
+                {
+                  label: "Панама",
+                  onClick: () => handleCountryClick("Панама"),
+                },
+                {
+                  label: "В'єтнам",
+                  onClick: () => handleCountryClick("В'єтнам"),
+                },
+                { label: "Куба", onClick: () => handleCountryClick("Куба") },
+                {
+                  label: "Сінгапур",
+                  onClick: () => handleCountryClick("Сінгапур"),
+                },
               ]}
             />
             <MenuCategory

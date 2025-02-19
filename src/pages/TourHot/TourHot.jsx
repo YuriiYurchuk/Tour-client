@@ -72,8 +72,6 @@ const TourHot = () => {
     }
   }, [filters, triggeredByPagination]);
 
-  console.log(hotels);
-
   const totalPages = Math.ceil(totalHotels / filters.limit);
 
   const handlePageChange = (page) => {

@@ -112,6 +112,10 @@
       color: vars.$color-white;
     }
 
+    .info--empty {
+      display: inline !important;
+    }
+
     .info {
       display: flex;
       justify-content: space-between;

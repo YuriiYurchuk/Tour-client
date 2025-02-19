@@ -1,4 +1,6 @@
 import axios from "axios";
+import store from "../redux/store";
+import { refreshUserToken, isTokenExpired } from "../redux/slices/authSlice";
 
 export const publicAxios = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -11,21 +13,36 @@ export const privateAxios = axios.create({
 });
 
 privateAxios.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem("accessToken");
+  async (config) => {
+    let token = localStorage.getItem("accessToken");
+
+    if (token && isTokenExpired(token)) {
+      try {
+        const refreshedData = await store.dispatch(refreshUserToken()).unwrap();
+        token = refreshedData.accessToken;
+        localStorage.setItem("accessToken", token);
+      } catch {
+        console.error("Не вдалося оновити токен, вихід...");
+        localStorage.removeItem("accessToken");
+      }
+    }
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
     return config;
   },
-  (error) => Promise.reject(new Error(error))
+  (error) => {
+    return Promise.reject(new Error(error.message));
+  }
 );
 
 privateAxios.interceptors.response.use(
   (response) => response,
-  (error) => {
+  async (error) => {
     if (error.response?.status === 401) {
-      console.error("Неавторизований доступ. Будь ласка, увійдіть у систему.");
+      console.error("Неавторизований доступ. Вихід...");
       localStorage.removeItem("accessToken");
     }
     return Promise.reject(new Error(error));

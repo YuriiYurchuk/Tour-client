@@ -34,8 +34,6 @@ const TourSelection = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  console.log(filters);
-
   const imagesBaseUrl = import.meta.env.VITE_IMAGES_BASE_URL;
 
   useEffect(() => {

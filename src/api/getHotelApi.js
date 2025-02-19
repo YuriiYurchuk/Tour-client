@@ -17,7 +17,17 @@ export const getTop = async () => {
     const response = await publicAxios.get("/hotel/top-orders");
     return response.data;
   } catch (error) {
-    console.error("Помилка при отриманні топ-10 гарячих турів:", error);
+    console.error("Помилка при отриманні топ-10 популярних готелів:", error);
+    throw error;
+  }
+};
+
+export const getTopRating = async () => {
+  try {
+    const response = await publicAxios.get("/hotel/top-rated");
+    return response.data;
+  } catch (error) {
+    console.error("Помилка при отриманні топ-10 рейтингових готелів:", error);
     throw error;
   }
 };

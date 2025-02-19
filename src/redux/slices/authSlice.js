@@ -4,7 +4,7 @@ import { jwtDecode } from "jwt-decode";
 import { toast } from "react-toastify";
 
 // Функція для перевірки терміну дії токена
-const isTokenExpired = (token) => {
+export const isTokenExpired = (token) => {
   try {
     const decoded = jwtDecode(token);
     const currentTime = Date.now() / 1000; // Поточний час в секундах
@@ -22,7 +22,7 @@ export const loginUser = createAsyncThunk(
       const response = await login(data);
       const decodedToken = jwtDecode(response.accessToken);
       localStorage.setItem("accessToken", response.accessToken);
-      toast.success("Вхід виконано успішно!"); // Повідомлення про успішний логін
+      toast.success("Вхід виконано успішно!");
       return { ...response, user: decodedToken };
     } catch (error) {
       toast.error(

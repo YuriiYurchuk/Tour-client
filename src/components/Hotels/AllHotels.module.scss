@@ -1,0 +1,11 @@
+.hotel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
+}
+
+.title {
+  font-size: clamp(1.75rem, 8vw, 2.75rem);
+  margin-bottom: 40px;
+}
