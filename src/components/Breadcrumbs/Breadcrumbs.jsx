@@ -5,10 +5,8 @@ import styles from "./Breadcrumbs.module.scss";
 const Breadcrumbs = () => {
   const location = useLocation();
 
-  // Розбиваємо шлях на сегменти
   const pathSegments = location.pathname.split("/").filter(Boolean);
 
-  // Переклад для сегментів
   const segmentTranslations = {
     "about-us": "Про нас",
     countries: "Країни",
@@ -18,16 +16,14 @@ const Breadcrumbs = () => {
     "tour-payment": "Як купити і оплатити тур",
     reviews: "Відгуки",
     contacts: "Контакти",
+    profile: "Профіль",
   };
 
-  // Створюємо breadcrumbs для кожного сегмента
   const breadcrumbs = pathSegments.map((segment, index) => {
     const path = `/${pathSegments.slice(0, index + 1).join("/")}`;
 
-    // Перевірка, чи сегмент є числом (ID)
     const isIdSegment = !isNaN(segment);
 
-    // Якщо сегмент є ID, то пропускаємо його або змінюємо на інший текст
     const label = isIdSegment ? "" : segmentTranslations[segment] || segment;
 
     const isActive = location.pathname === path;

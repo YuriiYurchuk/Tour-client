@@ -3,7 +3,11 @@ import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const PrivateRoute = ({ children }) => {
-  const { user, accessToken } = useSelector((state) => state.auth);
+  const { user, accessToken, isLoading } = useSelector((state) => state.auth);
+
+  if (isLoading) {
+    return <p>Завантаження...</p>;
+  }
 
   if (!accessToken || !user) {
     return <Navigate to="/auth" replace />;

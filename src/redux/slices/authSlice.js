@@ -79,6 +79,7 @@ const authSlice = createSlice({
     accessToken: localStorage.getItem("accessToken") || null,
     status: "idle",
     error: null,
+    isLoading: true, // Додаємо прапорець завантаження
   },
   reducers: {
     restoreUserFromToken: (state) => {
@@ -92,29 +93,41 @@ const authSlice = createSlice({
         state.accessToken = null;
         localStorage.removeItem("accessToken");
       }
+      state.isLoading = false; // Вказуємо, що ініціалізація завершена
     },
   },
   extraReducers: (builder) => {
     builder
+      .addCase(loginUser.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.accessToken = action.payload.accessToken;
         state.status = "succeeded";
+        state.isLoading = false;
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.error = action.payload?.message || "Login failed";
         state.status = "failed";
+        state.isLoading = false;
+      })
+      .addCase(refreshUserToken.pending, (state) => {
+        state.isLoading = true;
       })
       .addCase(refreshUserToken.fulfilled, (state, action) => {
         state.accessToken = action.payload.accessToken;
         state.user = action.payload.user;
+        state.isLoading = false;
       })
       .addCase(refreshUserToken.rejected, (state, action) => {
         state.error = action.payload?.message || "Token refresh failed";
+        state.isLoading = false;
       })
       .addCase(logoutUser.fulfilled, (state) => {
         state.user = null;
         state.accessToken = null;
+        state.isLoading = false;
       });
   },
 });

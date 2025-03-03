@@ -1,0 +1,90 @@
+@use "../../styles/variables.scss" as vars;
+
+.user-data {
+  display: flex;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  position: relative;
+
+  .avatar {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+  }
+
+  .info {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.btn-section {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  font: 400 1rem / 1 vars.$font-roboto;
+
+  button {
+    background-color: vars.$button-background;
+    color: vars.$color-white;
+    padding-block: 10px;
+    border-radius: 30px;
+    text-transform: uppercase;
+    transition: background-color 0.4s;
+    width: 100%;
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+      border: none;
+    }
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+
+    &:focus-visible,
+    &:hover {
+      background-color: vars.$button-hover;
+    }
+  }
+
+  .subscribe-btn {
+    background-color: #40c858;
+
+    &:hover {
+      background-color: #4be666;
+    }
+  }
+
+  .logout-btn {
+    background-color: transparent;
+    color: vars.$color-text;
+    border: vars.$border-button;
+
+    &:hover {
+      background-color: vars.$color-white;
+    }
+  }
+}
+
+.icon {
+  position: absolute;
+  right: 20px;
+}
+
+.verified {
+  color: #22c55e;
+}
+
+.not-verified {
+  color: #ef4444;
+}
