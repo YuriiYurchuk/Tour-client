@@ -1,5 +1,16 @@
 @use "../../styles/variables.scss" as vars;
 
+.profile {
+  margin-bottom: 11.25rem;
+
+  @media (max-width: 1024px) {
+    margin-bottom: 8.75rem;
+  }
+  @media (max-width: 500px) {
+    margin-bottom: 7.5rem;
+  }
+}
+
 .section-btn {
   display: flex;
   gap: 20px;

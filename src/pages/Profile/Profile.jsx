@@ -22,7 +22,7 @@ const Profile = () => {
   };
 
   return (
-    <section className="mb-20">
+    <section className={styles["profile"]}>
       <Banner
         title="Профіль"
         subtitle={`Ласкаво просимо ${username}`}
@@ -57,8 +57,7 @@ const Profile = () => {
           Бронювання
         </button>
       </section>
-
-      <section className="container">
+      <section className={`container ${styles["profile-section"]}`}>
         {tabComponents[activeTab] || null}
       </section>
     </section>
