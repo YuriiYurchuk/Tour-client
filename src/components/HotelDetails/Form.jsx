@@ -98,17 +98,21 @@ const Form = ({
         return;
       }
 
+      const airportName = flightData.find(
+        (flight) => flight.id === activeFlight
+      )?.name;
+
       const bookingData = {
         user_id: userId,
         hotel_id: id,
         room_type_id: activeRoomType,
         meal_plan_id: activeMealType,
-        price_per_person: price,
+        total_price: totalPrice,
         start_date: selectedDates.startDate,
         end_date: selectedDates.endDate,
         number_of_tourists: selectedTourist.adults,
         number_of_children: selectedTourist.children,
-        departure_airport: activeFlight,
+        departure_airport: airportName,
         status: "очікується",
         children: selectedTourist.ages.map((age) => ({ age })),
       };

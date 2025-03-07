@@ -20,3 +20,4 @@ export const formatShortMonthDayYear = (date) => {
   if (!date) return "";
   return format(new Date(date), "dd.MM.yy", { locale: uk });
 };
+
