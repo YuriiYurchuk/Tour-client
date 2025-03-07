@@ -11,6 +11,8 @@ import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Input from "@components/UI/Input/Input";
+import { motion } from "framer-motion";
+import { animationsProfile } from "./animations";
 
 const TabSetting = () => {
   const dispatch = useDispatch();
@@ -35,7 +37,12 @@ const TabSetting = () => {
   };
 
   return (
-    <section className={styles["user-update"]}>
+    <motion.section
+      className={styles["user-update"]}
+      initial="hidden"
+      animate="visible"
+      variants={animationsProfile.tab}
+    >
       <div className="flex items-center gap-3">
         <h2 className={styles["title"]}>Оновити профіль</h2>
         <FontAwesomeIcon
@@ -108,7 +115,7 @@ const TabSetting = () => {
           Оновити
         </button>
       </form>
-    </section>
+    </motion.section>
   );
 };
 

@@ -14,7 +14,8 @@ import { logoutUser } from "../../redux/slices/authSlice";
 import { subscribeUser, unsubscribeUser } from "@api/emailSubscriberApi";
 import styles from "./Profile.module.scss";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { motion } from "framer-motion";
+import { animationsProfile } from "./animations";
 
 const TabProfile = ({ onUsernameLoad }) => {
   const [user, setUser] = useState(null);
@@ -91,7 +92,12 @@ const TabProfile = ({ onUsernameLoad }) => {
   }
 
   return (
-    <section className={styles["user-data"]}>
+    <motion.section
+      className={styles["user-data"]}
+      initial="hidden"
+      animate="visible"
+      variants={animationsProfile.tab}
+    >
       <div className="flex flex-col items-center">
         <img
           className={styles["avatar"]}
@@ -159,7 +165,7 @@ const TabProfile = ({ onUsernameLoad }) => {
           {user.email_verified ? "Email підтверджено" : "Email не підтверджено"}
         </Tooltip>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

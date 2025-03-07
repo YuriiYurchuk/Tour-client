@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import TabProfile from "@components/Profile/TabProfile";
 import TabSetting from "@components/Profile/TabSetting";
 import TabReviews from "@components/Profile/TabReviews";
@@ -13,12 +14,41 @@ import styles from "./Profile.module.scss";
 const Profile = () => {
   const [username, setUsername] = useState("");
   const [activeTab, setActiveTab] = useState("profile");
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Set isLoaded to true after component mounts to trigger animations
+    setIsLoaded(true);
+  }, []);
 
   const tabComponents = {
     profile: <TabProfile onUsernameLoad={setUsername} />,
     setting: <TabSetting />,
     reviews: <TabReviews />,
     booking: <TabBooking />,
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const buttonVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+      },
+    },
   };
 
   return (
@@ -31,32 +61,41 @@ const Profile = () => {
         mobileImage={imgMobile}
       />
       <Breadcrumbs />
-      <section className={`container ${styles["section-btn"]}`}>
-        <button
+      <motion.section
+        className={`container ${styles["section-btn"]}`}
+        initial="hidden"
+        animate={isLoaded ? "visible" : "hidden"}
+        variants={containerVariants}
+      >
+        <motion.button
           className={activeTab === "profile" ? styles.active : styles.inactive}
           onClick={() => setActiveTab("profile")}
+          variants={buttonVariants}
         >
           Профіль
-        </button>
-        <button
+        </motion.button>
+        <motion.button
           className={activeTab === "setting" ? styles.active : styles.inactive}
           onClick={() => setActiveTab("setting")}
+          variants={buttonVariants}
         >
           Налаштування
-        </button>
-        <button
+        </motion.button>
+        <motion.button
           className={activeTab === "reviews" ? styles.active : styles.inactive}
           onClick={() => setActiveTab("reviews")}
+          variants={buttonVariants}
         >
           Відгуки
-        </button>
-        <button
+        </motion.button>
+        <motion.button
           className={activeTab === "booking" ? styles.active : styles.inactive}
           onClick={() => setActiveTab("booking")}
+          variants={buttonVariants}
         >
           Бронювання
-        </button>
-      </section>
+        </motion.button>
+      </motion.section>
       <section className={`container ${styles["profile-section"]}`}>
         {tabComponents[activeTab] || null}
       </section>

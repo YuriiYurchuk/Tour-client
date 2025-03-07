@@ -4,6 +4,8 @@ import { getBookingsByUserId, cancelBooking } from "@api/bookingApi";
 import { useSelector } from "react-redux";
 import { formatMonthDayYear } from "@utils/formatDate";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
+import { animationsProfile } from "./animations";
 
 const TabBooking = () => {
   const [bookings, setBookings] = useState([]);
@@ -49,17 +51,12 @@ const TabBooking = () => {
     }
   };
 
-  // Sort bookings to show active ones first
   const sortedBookings = [...bookings].sort((a, b) => {
-    // Prioritize active statuses
     const activeStatuses = ["очікується", "підтверджено"];
     const aIsActive = activeStatuses.includes(a.status);
     const bIsActive = activeStatuses.includes(b.status);
-
     if (aIsActive && !bIsActive) return -1;
     if (!aIsActive && bIsActive) return 1;
-
-    // If both have same active status, sort by date (newer first)
     return new Date(b.last_modified) - new Date(a.last_modified);
   });
 
@@ -69,7 +66,12 @@ const TabBooking = () => {
   if (error) return <p>Помилка: {error}</p>;
 
   return (
-    <section className={styles["booking-section"]}>
+    <motion.section
+      className={styles["booking-section"]}
+      initial="hidden"
+      animate="visible"
+      variants={animationsProfile.tab}
+    >
       <h2>Мої бронювання</h2>
       {bookings.length === 0 ? (
         <p>У вас немає бронювань</p>
@@ -113,7 +115,7 @@ const TabBooking = () => {
           ))}
         </div>
       )}
-    </section>
+    </motion.section>
   );
 };
 
