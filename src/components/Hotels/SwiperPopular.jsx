@@ -8,6 +8,8 @@ import { getTop } from "@api/getHotelApi";
 import { SkeletonHotels } from "@components/Skeleton/SkeletonHotels";
 import ErrorMessage from "@components/ErrorMessage/ErrorMessage";
 import star from "../../assets/images/filled-star-icon.svg";
+import { motion } from "framer-motion";
+import { animationsHotels } from "./animations";
 
 const SwiperPopular = () => {
   const [hotels, setHotels] = useState([]);
@@ -39,7 +41,12 @@ const SwiperPopular = () => {
     content = <ErrorMessage />;
   } else {
     content = (
-      <div>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        variants={animationsHotels.swiper}
+        viewport={{ once: true, amount: 0.3 }}
+      >
         <Swiper
           modules={[Scrollbar]}
           spaceBetween={25}
@@ -97,16 +104,30 @@ const SwiperPopular = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
+      </motion.div>
     );
   }
 
   return (
     <section className="container">
-      <h3 className={styles["title-popular"]}>Найрейтинговіші</h3>
-      <p className={styles["text"]}>
+      <motion.h3
+        initial="hidden"
+        whileInView="visible"
+        variants={animationsHotels.text}
+        viewport={{ once: true, amount: 0.5 }}
+        className={styles["title-popular"]}
+      >
+        Найрейтинговіші
+      </motion.h3>
+      <motion.p
+        initial="hidden"
+        whileInView="visible"
+        variants={animationsHotels.text}
+        viewport={{ once: true, amount: 0.5 }}
+        className={styles["text"]}
+      >
         Ці готелі зібрали найбільше думок та оцінок від наших клієнтів
-      </p>
+      </motion.p>
       {content}
     </section>
   );

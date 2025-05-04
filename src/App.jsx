@@ -1,4 +1,4 @@
-import { Suspense, lazy} from "react";
+import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Layout } from "@components/Layout/Layout";
 import Loader from "@components/Loader/Loader";
@@ -30,6 +30,12 @@ const HotelDetailsPage = preload(() =>
 const MapsPage = preload(() => import("@pages/Map/Maps"));
 const CountriesPage = preload(() => import("@pages/Countries/Countries"));
 const HotelsPage = preload(() => import("@pages/Hotels/Hotels"));
+const ServicesDetails = preload(() =>
+  import("@components/DataFilling/ServicesDetails")
+);
+const PersonalDetails = preload(() =>
+  import("@components/DataFilling/PersonalDetails")
+);
 
 const routes = [
   {
@@ -80,6 +86,16 @@ const routes = [
   {
     path: "/profile",
     element: <ProfilePage />,
+    wrapper: PrivateRoute,
+  },
+  {
+    path: "/booking/:bookingId/services",
+    element: <ServicesDetails />,
+    wrapper: PrivateRoute,
+  },
+  {
+    path: "/booking/:bookingId/personal",
+    element: <PersonalDetails />,
     wrapper: PrivateRoute,
   },
 ];

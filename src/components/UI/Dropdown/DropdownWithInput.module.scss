@@ -1,4 +1,4 @@
-@use "../../../styles/variables" as vars;
+@use "../../../styles/variables.scss" as vars;
 
 .ui-dropdown {
   position: relative;
@@ -50,7 +50,7 @@
 }
 
 .input-error {
-  border-color: $color-error;
+  border-color: vars.$color-error;
 }
 
 .dropdown-menu {

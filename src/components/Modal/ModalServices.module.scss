@@ -1,0 +1,144 @@
+@use "../../styles/variables.scss" as vars;
+
+.overlay-services {
+  justify-content: flex-end;
+  padding: 0;
+}
+
+.modal-services {
+  margin: 0;
+  max-width: 480px;
+
+  @media (max-width: 500px) {
+    max-width: 500px;
+  }
+}
+
+.content-services {
+  border-radius: 0;
+  padding: 0;
+  padding-top: 70px;
+}
+
+.service-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-inline: 30px;
+  gap: 30px;
+
+  h2 {
+    font-size: 1.5rem;
+    position: absolute;
+    text-transform: unset;
+    top: -45px;
+    left: 30px;
+    color: vars.$color-text;
+  }
+
+  .section-category {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .service-option {
+      display: flex;
+      align-items: start;
+      gap: 25px;
+      padding: 24px;
+      background-color: vars.$color-indigo;
+      border-radius: 30px;
+
+      p {
+        color: vars.$color-white;
+        margin-bottom: 8px;
+      }
+
+      .checkbox-wrapper {
+        position: relative;
+        width: 26px !important;
+        height: 26px !important;
+      }
+
+      .service-checkbox {
+        width: 26px !important;
+        height: 26px !important;
+        background-color: vars.$color-white;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &::after {
+          content: "✔";
+          font-size: 14px;
+          color: vars.$color-white;
+          display: none;
+        }
+      }
+
+      input {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      input:checked + .service-checkbox {
+        background-color: vars.$color-white;
+
+        &::after {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .btn-service {
+    position: sticky;
+    display: flex;
+    justify-content: center;
+    z-index: 5;
+    bottom: 0;
+    background-color: #fff;
+    border-top: 2px solid #d4d4d4;
+    padding: 20px 30px;
+
+    .apply-button {
+      padding: 10px 25px;
+      background-color: vars.$color-text;
+      color: vars.$color-white;
+      font: 500 1rem / 1 vars.$font-roboto;
+      text-transform: uppercase;
+      border-radius: 30px;
+      border: 1px solid vars.$color-text;
+      transition: color 0.4s, background-color 0.4s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      &:hover,
+      &:focus-visible {
+        color: vars.$color-text;
+        background-color: transparent;
+
+        .arrow {
+          transform: rotate(-45deg);
+          filter: brightness(0) saturate(100%) invert(1%) sepia(42%)
+            saturate(7%) hue-rotate(314deg) brightness(99%) contrast(80%);
+        }
+      }
+
+      .arrow {
+        transition: filter 0.4s, transform 0.4s;
+
+        &::after {
+          content: url("../../assets/images/arrow-icon.svg");
+        }
+      }
+    }
+  }
+}

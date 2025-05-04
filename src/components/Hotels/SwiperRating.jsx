@@ -8,6 +8,8 @@ import { getTopRating } from "@api/getHotelApi";
 import { SkeletonHotels } from "@components/Skeleton/SkeletonHotels";
 import ErrorMessage from "@components/ErrorMessage/ErrorMessage";
 import star from "../../assets/images/filled-star-icon.svg";
+import { motion } from "framer-motion";
+import { animationsHotels } from "./animations";
 
 const SwiperRating = () => {
   const [hotels, setHotels] = useState([]);
@@ -39,7 +41,12 @@ const SwiperRating = () => {
     content = <ErrorMessage />;
   } else {
     content = (
-      <div>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        variants={animationsHotels.swiper}
+        viewport={{ once: true, amount: 0.5 }}
+      >
         <Swiper
           modules={[Scrollbar]}
           spaceBetween={25}
@@ -97,16 +104,30 @@ const SwiperRating = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
+      </motion.div>
     );
   }
 
   return (
     <section className="container">
-      <h3 className={styles["title-rating"]}>Бестселери</h3>
-      <p className={styles["text"]}>
+      <motion.h3
+        initial="hidden"
+        whileInView="visible"
+        variants={animationsHotels.text}
+        viewport={{ once: true, amount: 0.5 }}
+        className={styles["title-rating"]}
+      >
+        Бестселери
+      </motion.h3>
+      <motion.p
+        initial="hidden"
+        whileInView="visible"
+        variants={animationsHotels.text}
+        viewport={{ once: true, amount: 0.5 }}
+        className={styles["text"]}
+      >
         Готелі, які найчастіше бронюють наші клієнти
-      </p>
+      </motion.p>
       {content}
     </section>
   );

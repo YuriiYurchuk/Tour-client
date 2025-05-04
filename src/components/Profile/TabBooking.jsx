@@ -6,6 +6,7 @@ import { formatMonthDayYear } from "@utils/formatDate";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { animationsProfile } from "./animations";
+import { useNavigate } from "react-router-dom";
 
 const TabBooking = () => {
   const [bookings, setBookings] = useState([]);
@@ -13,6 +14,7 @@ const TabBooking = () => {
   const [error, setError] = useState(null);
   const [cancelingId, setCancelingId] = useState(null);
   const userId = useSelector((state) => state.auth.user.id);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -60,7 +62,15 @@ const TabBooking = () => {
     return new Date(b.last_modified) - new Date(a.last_modified);
   });
 
-  console.log(bookings);
+  const handleFillDetails = (booking) => {
+    if (booking.status === "підтверджено") {
+      navigate(`/booking/${booking.id}/services`);
+    } else {
+      toast.error(
+        "Ви можете заповнювати дані тільки для підтверджених бронювань"
+      );
+    }
+  };
 
   if (loading) return <p>Завантаження...</p>;
   if (error) return <p>Помилка: {error}</p>;
@@ -91,6 +101,7 @@ const TabBooking = () => {
               <p>Тип харчування: {booking.HotelMealType?.type_name}</p>
               <p>Загальна ціна: {booking.total_price}</p>
               <p>Статус: {booking.status}</p>
+              <p>Номер бронювання: {booking.id}</p>
               <time>{formatMonthDayYear(booking.last_modified)}</time>
               <div className={styles["buttons"]}>
                 {booking.status !== "скасовано" &&
@@ -106,7 +117,10 @@ const TabBooking = () => {
                     </button>
                   )}
                 {booking.status === "підтверджено" && (
-                  <button className={styles["fill-details-btn"]}>
+                  <button
+                    className={styles["fill-details-btn"]}
+                    onClick={() => handleFillDetails(booking)}
+                  >
                     Заповнити дані
                   </button>
                 )}

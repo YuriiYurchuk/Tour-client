@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import styles from "./Countries.module.scss";
 import countriesData from "./countriesData";
 
@@ -21,6 +22,20 @@ const groupByFirstLetter = (countries) => {
 
 const groupedCountries = groupByFirstLetter(countriesData);
 
+// Анімація з поступовою появою по індексу
+const itemVariant = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  }),
+};
+
 const Countries = () => {
   const navigate = useNavigate();
 
@@ -39,12 +54,17 @@ const Countries = () => {
           <div key={letter} className={styles["group"]}>
             <h3 className={styles["letter"]}>{letter}</h3>
             <div className={styles["list"]}>
-              {countries.map((country) => (
-                <button
+              {countries.map((country, index) => (
+                <motion.button
                   key={country.id}
                   onClick={() => handleCountryClick(country.name)}
                   className={styles["country-card"]}
                   style={{ cursor: "pointer" }}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  variants={itemVariant}
+                  custom={index}
                 >
                   <img
                     src={getFlag(country.flag)}
@@ -54,7 +74,7 @@ const Countries = () => {
                   <div>
                     <p className={styles.name}>{country.name}</p>
                   </div>
-                </button>
+                </motion.button>
               ))}
             </div>
           </div>

@@ -36,8 +36,6 @@ const TabReviews = () => {
     fetchReviews();
   }, []);
 
-  console.log(reviews);
-
   if (loading) return <p>Завантаження відгуків...</p>;
   if (error) return <p>{error}</p>;
 

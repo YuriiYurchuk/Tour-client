@@ -23,6 +23,19 @@ export const getBookingsByUserId = async (userId) => {
   }
 };
 
+export const getSingleBookingById = async (bookingId) => {
+  try {
+    const response = await privateAxios.get(`/bookings/${bookingId}`);
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Error fetching booking by ID:",
+      error.response?.data || error.message
+    );
+    throw error;
+  }
+};
+
 export const cancelBooking = async (bookingId) => {
   try {
     const response = await privateAxios.patch(`/bookings/cancel/${bookingId}`);

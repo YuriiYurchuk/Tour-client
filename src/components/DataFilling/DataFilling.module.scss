@@ -1,0 +1,215 @@
+@use "../../styles/variables.scss" as vars;
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.services-details {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-block: 100px;
+
+  .services {
+    max-width: 700px;
+    width: 100%;
+
+    @media (max-width: 1000px) {
+      max-width: none;
+    }
+  }
+
+  .services-update {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 36px;
+
+    @media (max-width: 650px) {
+      flex-direction: column;
+      align-items: start;
+      gap: 10px;
+    }
+
+    h2 {
+      color: vars.$color-text;
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .click-btn {
+      display: none;
+      width: 34px;
+      height: 34px;
+
+      @media (max-width: 1000px) {
+        display: block;
+      }
+    }
+  }
+
+  .list-service {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 22px;
+
+    .item-service {
+      background-color: vars.$color-indigo;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 30px;
+
+      p {
+        color: vars.$color-white;
+        font-weight: 400;
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  h4 {
+    margin-bottom: 12px;
+    text-transform: unset;
+    font-weight: 500;
+    font-size: 1.25rem;
+  }
+
+  .card-booking {
+    max-width: 300px;
+    padding: 24px;
+    box-shadow: 0 4px 20px 0 rgba(43, 43, 51, 0.2);
+    border-radius: 30px;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s ease 0.3s;
+
+    &.visible {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    @media (max-width: 1000px) {
+      position: absolute;
+      background-color: vars.$color-white;
+      top: 120px;
+      right: 0;
+      z-index: 10;
+    }
+
+    @media (min-width: 1000px) {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    img {
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    .hotel-name {
+      font-weight: 600;
+      margin-block: 7px;
+      font-size: 1rem;
+    }
+
+    .stars {
+      display: flex;
+      gap: 5px;
+
+      .star {
+        width: 12px;
+        margin-bottom: 32px;
+      }
+    }
+
+    p,
+    time {
+      font-size: 0.88rem;
+
+      span {
+        font-weight: 600;
+      }
+    }
+
+    .total-price {
+      margin-top: 32px;
+      margin-bottom: 24px;
+      padding-top: 15px;
+      border-top: vars.$border-button;
+      font-weight: 600;
+    }
+  }
+
+  .submit-button {
+    position: relative;
+    width: 100%;
+    padding: 0.625rem 2.75rem 0.625rem 1.875rem;
+    font: 500 1rem / 1 vars.$font-roboto;
+    color: #fff;
+    border-radius: 1.25rem;
+    text-transform: uppercase;
+    background-color: vars.$button-background;
+
+    &.hidden-on-large {
+      @media (min-width: 451px) {
+        display: none;
+      }
+    }
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+      border: none;
+    }
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+
+    &:focus-visible,
+    &:hover {
+      background-color: vars.$button-hover;
+    }
+
+    &::after {
+      position: absolute;
+      margin-left: 10px;
+      top: 50%;
+      content: url("../../assets//images/arrow-icon.svg");
+      transform: translateY(-50%);
+      transition: transform 0.5s;
+    }
+
+    &:hover::after {
+      transform: translate(5px, -50%) rotate(-45deg);
+    }
+
+    &:focus-visible {
+      outline: none;
+      background-color: vars.$button-hover;
+    }
+
+    &:focus-visible::after {
+      transform: translate(5px, -50%) rotate(-45deg);
+    }
+
+    @media (hover: none) {
+      &:hover::after {
+        transform: translateY(-50%);
+      }
+
+      &:focus-visible::after {
+        transform: translate(5px, -50%) rotate(-45deg);
+      }
+    }
+  }
+}

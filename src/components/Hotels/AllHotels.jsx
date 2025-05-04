@@ -6,6 +6,8 @@ import { SkeletonHotelsCardPage } from "@components/Skeleton/SkeletonHotelsCardP
 import { getAllHotels } from "@api/getHotelApi";
 import HotelCard from "@components/Card/HotelCard";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { animationsHotels } from "./animations";
 
 const AllHotels = () => {
   const [hotels, setHotels] = useState([]);
@@ -74,7 +76,13 @@ const AllHotels = () => {
           <div className={styles["no-hotels"]}>Готелі відсутні</div>
         ) : (
           hotels.map((hotel) => (
-            <div key={hotel.id}>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              variants={animationsHotels.card}
+              viewport={{ once: true, amount: 0.5 }}
+              key={hotel.id}
+            >
               <HotelCard
                 id={hotel.id}
                 name={hotel.name}
@@ -93,7 +101,7 @@ const AllHotels = () => {
                 amenities={hotel.amenity || []}
                 hotelPhoto={`${imagesBaseUrl}${hotel.hotel_photos}`}
               />
-            </div>
+            </motion.div>
           ))
         )}
       </div>
