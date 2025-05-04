@@ -3,6 +3,7 @@ import DropdownWithInput from "@components/UI/Dropdown/DropdownWithInput";
 import { useWatch } from "react-hook-form";
 import { useEffect, useState } from "react";
 import styles from "./DataFilling.module.scss";
+import PropTypes from "prop-types";
 
 const months = [
   "Січень",
@@ -49,53 +50,59 @@ const FormTourist = ({ control, index }) => {
   }, [month, year]);
 
   return (
-    <div className={styles["tourist-  container"]}>
+    <div className={styles["tourist-container"]}>
       <h3 className={styles["tourist"]}>Турист {index + 1}</h3>
       <h4 className={styles["title"]}>Основні дані</h4>
-      <div className="flex gap-2">
+      <div className="flex flex-col [@media(min-width:501px)]:flex-row gap-2 mb-2">
         <Input
           name={`tourists.${index}.first_name`}
           control={control}
           label="Ім'я"
           rules={{ required: "Поле обов'язкове" }}
+          className="w-full"
         />
         <Input
           name={`tourists.${index}.last_name`}
           control={control}
           label="Прізвище"
           rules={{ required: "Поле обов'язкове" }}
+          className="w-full"
         />
       </div>
-      <div className="flex gap-2">
+      <div className="flex flex-col [@media(min-width:501px)]:flex-row gap-2 mb-2">
         <DropdownWithInput
           name={`tourists.${index}.salutation`}
           control={control}
           label="Звернення"
           options={["Mr", "Mrs", "Chd"]}
           rules={{ required: "Оберіть звернення" }}
+          className="w-full"
         />
         <DropdownWithInput
           name={`tourists.${index}.gender`}
           control={control}
           label="Стать"
           options={["Чоловік", "Жінка"]}
+          className="w-full"
         />
       </div>
-      <div className="flex gap-2">
+      <div className="flex flex-col [@media(min-width:501px)]:flex-row gap-2 mb-2">
         <Input
           name={`tourists.${index}.country_birth`}
           control={control}
           label="Країна народження"
           rules={{ required: "Поле обов'язкове" }}
+          className="w-full"
         />
         <Input
           name={`tourists.${index}.citizenship`}
           control={control}
           label="Громадянство"
           rules={{ required: "Поле обов'язкове" }}
+          className="w-full"
         />
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-2 mb-10">
         <DropdownWithInput
           name={`tourists.${index}.birth_day`}
           control={control}
@@ -121,22 +128,25 @@ const FormTourist = ({ control, index }) => {
         control={control}
         label="Тип документа"
         rules={{ required: "Поле обов'язкове" }}
+        className="mb-2"
       />
-      <div className="flex gap-2">
+      <div className="flex flex-col [@media(min-width:501px)]:flex-row gap-2 mb-2">
         <Input
           name={`tourists.${index}.document_series`}
           control={control}
           label="Серія документа"
+          className="w-full"
         />
         <Input
           name={`tourists.${index}.document_number`}
           control={control}
           label="Номер документа"
           rules={{ required: "Поле обов'язкове" }}
+          className="w-full"
         />
       </div>
       <p>Дата видачі</p>
-      <div className="flex gap-2">
+      <div className="flex gap-2 mb-2">
         <DropdownWithInput
           name={`tourists.${index}.issued_day`}
           control={control}
@@ -157,7 +167,7 @@ const FormTourist = ({ control, index }) => {
         />
       </div>
       <p>Дійсний до</p>
-      <div className="flex gap-2">
+      <div className="flex gap-2 mb-10">
         <DropdownWithInput
           name={`tourists.${index}.valid_day`}
           control={control}
@@ -178,20 +188,27 @@ const FormTourist = ({ control, index }) => {
         />
       </div>
       <h4 className={styles["title"]}>Контактні дані</h4>
-      <div className="flex gap-2">
+      <div className="flex flex-col [@media(min-width:501px)]:flex-row gap-2 mb-20">
         <Input
           name={`tourists.${index}.phone_number`}
           control={control}
           label="Номер телефону"
+          className="w-full"
         />
         <Input
           name={`tourists.${index}.email`}
           control={control}
           label="Email"
+          className="w-full"
         />
       </div>
     </div>
   );
+};
+
+FormTourist.propTypes = {
+  control: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default FormTourist;

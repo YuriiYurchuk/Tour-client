@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useController } from "react-hook-form";
 import styles from "./DropdownWithInput.module.scss";
 
@@ -14,6 +14,8 @@ const DropdownWithInput = ({
   className,
   defaultValue = "",
 }) => {
+  const wrapperRef = useRef(null);
+
   const {
     field,
     fieldState: { error },
@@ -45,8 +47,21 @@ const DropdownWithInput = ({
     setFilteredOptions(filtered);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className={`${styles["ui-dropdown"]} ${className}`}>
+    <div ref={wrapperRef} className={`${styles["ui-dropdown"]} ${className}`}>
       <input
         {...field}
         id={name}
