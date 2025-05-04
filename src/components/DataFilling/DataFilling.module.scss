@@ -216,4 +216,30 @@
 
 .tourist-container {
   max-width: 640px;
+
+  .tourist {
+    color: vars.$color-indigo;
+    font-size: 1.75rem;
+    margin-bottom: 30px;
+  }
+
+  .title {
+    font-weight: 500;
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+    text-transform: unset;
+  }
+
+  .date {
+    margin-bottom: 10px;
+    padding-left: 10px;
+  }
+
+  .contract {
+    font-weight: 500;
+    font-size: 1.75rem;
+    text-transform: unset;
+    margin-bottom: 30px;
+    margin-top: 50px;
+  }
 }

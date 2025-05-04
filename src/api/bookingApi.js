@@ -48,3 +48,19 @@ export const cancelBooking = async (bookingId) => {
     throw error;
   }
 };
+
+export const sendBookingDetails = async (bookingId, payload) => {
+  try {
+    const response = await privateAxios.post(
+      `/bookings/details/${bookingId}`,
+      payload
+    );
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Помилка надсилання деталей бронювання:",
+      error.response?.data || error.message
+    );
+    throw error;
+  }
+};

@@ -53,7 +53,7 @@ const FormTourist = ({ control, index }) => {
     <div className={styles["tourist-container"]}>
       <h3 className={styles["tourist"]}>Турист {index + 1}</h3>
       <h4 className={styles["title"]}>Основні дані</h4>
-      <div className="flex flex-col [@media(min-width:501px)]:flex-row gap-2 mb-2">
+      <div className="flex flex-col gap-4 mb-4 xs-plus:flex-row xs-plus:gap-2">
         <Input
           name={`tourists.${index}.first_name`}
           control={control}
@@ -69,7 +69,7 @@ const FormTourist = ({ control, index }) => {
           className="w-full"
         />
       </div>
-      <div className="flex flex-col [@media(min-width:501px)]:flex-row gap-2 mb-2">
+      <div className="flex flex-col gap-4 mb-4 xs-plus:flex-row xs-plus:gap-2">
         <DropdownWithInput
           name={`tourists.${index}.salutation`}
           control={control}
@@ -86,7 +86,7 @@ const FormTourist = ({ control, index }) => {
           className="w-full"
         />
       </div>
-      <div className="flex flex-col [@media(min-width:501px)]:flex-row gap-2 mb-2">
+      <div className="flex flex-col gap-4 mb-4 xs-plus:flex-row xs-plus:gap-2">
         <Input
           name={`tourists.${index}.country_birth`}
           control={control}
@@ -102,6 +102,7 @@ const FormTourist = ({ control, index }) => {
           className="w-full"
         />
       </div>
+      <p className={styles["date"]}>Дата народження</p>
       <div className="flex gap-2 mb-10">
         <DropdownWithInput
           name={`tourists.${index}.birth_day`}
@@ -128,9 +129,9 @@ const FormTourist = ({ control, index }) => {
         control={control}
         label="Тип документа"
         rules={{ required: "Поле обов'язкове" }}
-        className="mb-2"
+        className="mb-4"
       />
-      <div className="flex flex-col [@media(min-width:501px)]:flex-row gap-2 mb-2">
+      <div className="flex flex-col gap-4 mb-4 xs-plus:flex-row xs-plus:gap-2">
         <Input
           name={`tourists.${index}.document_series`}
           control={control}
@@ -145,8 +146,8 @@ const FormTourist = ({ control, index }) => {
           className="w-full"
         />
       </div>
-      <p>Дата видачі</p>
-      <div className="flex gap-2 mb-2">
+      <p className={styles["date"]}>Дата видачі</p>
+      <div className="flex gap-2 mb-4">
         <DropdownWithInput
           name={`tourists.${index}.issued_day`}
           control={control}
@@ -166,7 +167,7 @@ const FormTourist = ({ control, index }) => {
           options={issuedYears}
         />
       </div>
-      <p>Дійсний до</p>
+      <p className={styles["date"]}>Дійсний до</p>
       <div className="flex gap-2 mb-10">
         <DropdownWithInput
           name={`tourists.${index}.valid_day`}
@@ -188,7 +189,7 @@ const FormTourist = ({ control, index }) => {
         />
       </div>
       <h4 className={styles["title"]}>Контактні дані</h4>
-      <div className="flex flex-col [@media(min-width:501px)]:flex-row gap-2 mb-20">
+      <div className="flex flex-col gap-4 mb-4 xs-plus:flex-row xs-plus:gap-2">
         <Input
           name={`tourists.${index}.phone_number`}
           control={control}
