@@ -3,18 +3,16 @@ import { login, refreshToken, logout } from "../../api/authApi";
 import { jwtDecode } from "jwt-decode";
 import { toast } from "react-toastify";
 
-// Функція для перевірки терміну дії токена
 export const isTokenExpired = (token) => {
   try {
     const decoded = jwtDecode(token);
-    const currentTime = Date.now() / 1000; // Поточний час в секундах
+    const currentTime = Date.now() / 1000;
     return decoded.exp < currentTime;
   } catch {
-    return true; // Якщо розкодування не вдалося, токен вважається недійсним
+    return true;
   }
 };
 
-// Логін користувача
 export const loginUser = createAsyncThunk(
   "auth/login",
   async (data, thunkAPI) => {
@@ -36,7 +34,6 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-// Оновлення токена
 export const refreshUserToken = createAsyncThunk(
   "auth/refreshToken",
   async (_, thunkAPI) => {
@@ -54,7 +51,6 @@ export const refreshUserToken = createAsyncThunk(
   }
 );
 
-// Вихід користувача
 export const logoutUser = createAsyncThunk(
   "auth/logout",
   async (_, thunkAPI) => {
@@ -79,7 +75,7 @@ const authSlice = createSlice({
     accessToken: localStorage.getItem("accessToken") || null,
     status: "idle",
     error: null,
-    isLoading: true, // Додаємо прапорець завантаження
+    isLoading: true,
   },
   reducers: {
     restoreUserFromToken: (state) => {
@@ -93,7 +89,7 @@ const authSlice = createSlice({
         state.accessToken = null;
         localStorage.removeItem("accessToken");
       }
-      state.isLoading = false; // Вказуємо, що ініціалізація завершена
+      state.isLoading = false;
     },
   },
   extraReducers: (builder) => {
