@@ -36,6 +36,9 @@ const ServicesDetails = preload(() =>
 const PersonalDetails = preload(() =>
   import("@components/DataFilling/PersonalDetails")
 );
+const PaymentDetails = preload(() =>
+  import("@components/DataFilling/PaymentDetails")
+);
 
 const routes = [
   {
@@ -96,6 +99,16 @@ const routes = [
   {
     path: "/booking/:bookingId/personal",
     element: <PersonalDetails />,
+    wrapper: PrivateRoute,
+  },
+  {
+    path: "/booking/:bookingId/personal",
+    element: <PersonalDetails />,
+    wrapper: PrivateRoute,
+  },
+  {
+    path: "/booking/:bookingId/payment",
+    element: <PaymentDetails />,
     wrapper: PrivateRoute,
   },
 ];

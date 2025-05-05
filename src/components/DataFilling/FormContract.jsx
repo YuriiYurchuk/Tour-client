@@ -86,12 +86,13 @@ const FormContract = ({ control }) => {
         />
       </div>
       <p className={styles["date"]}>Дата народження</p>
-      <div className="flex flex-col gap-4 mb-4 xs-plus:flex-row xs-plus:gap-4">
+      <div className="flex gap-2 mb-4">
         <DropdownWithInput
           name="birth_day"
           control={control}
           label="День"
           options={daysInMonth}
+          rules={{ required: "Поле обов'язкове" }}
           className="w-full"
         />
         <DropdownWithInput
@@ -99,6 +100,7 @@ const FormContract = ({ control }) => {
           control={control}
           label="Місяць"
           options={months}
+          rules={{ required: "Поле обов'язкове" }}
           className="w-full"
         />
         <DropdownWithInput
@@ -106,6 +108,7 @@ const FormContract = ({ control }) => {
           control={control}
           label="Рік"
           options={birthYears}
+          rules={{ required: "Поле обов'язкове" }}
           className="w-full"
         />
       </div>
@@ -133,12 +136,13 @@ const FormContract = ({ control }) => {
         />
       </div>
       <p className={styles["date"]}>Дата видачі документа</p>
-      <div className="flex flex-col gap-4 mb-4 xs-plus:flex-row xs-plus:gap-4">
+      <div className="flex gap-2 mb-4">
         <DropdownWithInput
           name="issued_day"
           control={control}
           label="День"
           options={daysInMonth}
+          rules={{ required: "Поле обов'язкове" }}
           className="w-full"
         />
         <DropdownWithInput
@@ -146,6 +150,7 @@ const FormContract = ({ control }) => {
           control={control}
           label="Місяць"
           options={months}
+          rules={{ required: "Поле обов'язкове" }}
           className="w-full"
         />
         <DropdownWithInput
@@ -153,6 +158,7 @@ const FormContract = ({ control }) => {
           control={control}
           label="Рік"
           options={issuedYears}
+          rules={{ required: "Поле обов'язкове" }}
           className="w-full"
         />
       </div>
@@ -162,12 +168,14 @@ const FormContract = ({ control }) => {
           name="phone_number"
           control={control}
           label="Номер телефону"
+          rules={{ required: "Поле обов'язкове" }}
           className="w-full"
         />
         <Input
           name="email"
           control={control}
           label="Email"
+          rules={{ required: "Поле обов'язкове" }}
           className="w-full"
         />
       </div>
@@ -176,6 +184,7 @@ const FormContract = ({ control }) => {
         control={control}
         label="Адреса реєстрації"
         rules={{ required: "Поле обов'язкове" }}
+        className="mb-6"
       />
     </div>
   );

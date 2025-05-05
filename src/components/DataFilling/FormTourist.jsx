@@ -88,7 +88,7 @@ const FormTourist = ({ control, index }) => {
       </div>
       <div className="flex flex-col gap-4 mb-4 xs-plus:flex-row xs-plus:gap-2">
         <Input
-          name={`tourists.${index}.country_birth`}
+          name={`tourists.${index}.country_of_birth`}
           control={control}
           label="Країна народження"
           rules={{ required: "Поле обов'язкове" }}
@@ -109,18 +109,21 @@ const FormTourist = ({ control, index }) => {
           control={control}
           label="День"
           options={daysInMonth}
+          rules={{ required: "Поле обов'язкове" }}
         />
         <DropdownWithInput
           name={`tourists.${index}.birth_month`}
           control={control}
           label="Місяць"
           options={months}
+          rules={{ required: "Поле обов'язкове" }}
         />
         <DropdownWithInput
           name={`tourists.${index}.birth_year`}
           control={control}
           label="Рік"
           options={birthYears}
+          rules={{ required: "Поле обов'язкове" }}
         />
       </div>
       <h4 className={styles["title"]}>Паспорті дані</h4>
@@ -153,12 +156,14 @@ const FormTourist = ({ control, index }) => {
           control={control}
           label="День"
           options={daysInMonth}
+          rules={{ required: "Поле обов'язкове" }}
         />
         <DropdownWithInput
           name={`tourists.${index}.issued_month`}
           control={control}
           label="Місяць"
           options={months}
+          rules={{ required: "Поле обов'язкове" }}
         />
         <DropdownWithInput
           name={`tourists.${index}.issued_year`}
@@ -174,18 +179,21 @@ const FormTourist = ({ control, index }) => {
           control={control}
           label="День"
           options={daysInMonth}
+          rules={{ required: "Поле обов'язкове" }}
         />
         <DropdownWithInput
           name={`tourists.${index}.valid_month`}
           control={control}
           label="Місяць"
           options={months}
+          rules={{ required: "Поле обов'язкове" }}
         />
         <DropdownWithInput
           name={`tourists.${index}.valid_year`}
           control={control}
           label="Рік"
           options={validYears}
+          rules={{ required: "Поле обов'язкове" }}
         />
       </div>
       <h4 className={styles["title"]}>Контактні дані</h4>
@@ -194,12 +202,14 @@ const FormTourist = ({ control, index }) => {
           name={`tourists.${index}.phone_number`}
           control={control}
           label="Номер телефону"
+          rules={{ required: "Поле обов'язкове" }}
           className="w-full"
         />
         <Input
           name={`tourists.${index}.email`}
           control={control}
           label="Email"
+          rules={{ required: "Поле обов'язкове" }}
           className="w-full"
         />
       </div>
