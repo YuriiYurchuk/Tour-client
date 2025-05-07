@@ -153,7 +153,6 @@
 
 .submit-button {
   position: relative;
-  width: 100%;
   padding: 0.625rem 2.75rem 0.625rem 1.875rem;
   font: 500 1rem / 1 vars.$font-roboto;
   color: #fff;
@@ -249,5 +248,101 @@
     text-transform: unset;
     margin-bottom: 30px;
     margin-top: 50px;
+  }
+}
+
+.payment-details {
+  margin-block: 100px;
+
+  .payment {
+    font-weight: 500;
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+
+  .card {
+    position: relative;
+    margin-bottom: 100px;
+
+    .card-front {
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .card-front,
+    .card-back {
+      border: 1px solid #585858;
+      border-radius: 1.88rem;
+      background-color: #f8f8f8;
+      max-width: 380px;
+      width: 100%;
+
+      .expiry-container {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        margin-top: 20px;
+
+        .card-expiry {
+          max-width: 60px;
+        }
+      }
+    }
+
+    .card-back {
+      position: absolute;
+      height: 240px;
+      z-index: -1;
+      top: 50px;
+      left: 160px;
+
+      @media (max-width: 600px) {
+        position: relative;
+        top: 0;
+        left: 0;
+      }
+
+      .cvc-field {
+        display: flex;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10;
+        flex-direction: column;
+        align-items: end;
+
+        .card-cvc {
+          max-width: 70px;
+        }
+      }
+
+      .black-strip {
+        position: absolute;
+        top: 50px;
+        width: 100%;
+        z-index: 100;
+        background-color: #585858;
+        height: 3rem;
+      }
+    }
+
+    .label {
+      font-weight: 400;
+      font-size: 0.88rem;
+      color: #585858;
+      margin-bottom: 9px;
+    }
+  }
+
+  input {
+    border: 1px solid #d4d4d4;
+    border-radius: 1.88rem;
+    background-color: transparent;
+    padding: 5px 20px;
+
+    &:focus-visible {
+      border-color: #1c1c1c;
+      outline: none;
+    }
   }
 }
