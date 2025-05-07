@@ -28,6 +28,7 @@ const HotelDetailsPage = preload(() =>
   import("@pages/HotelDetails/HotelDetails")
 );
 const MapsPage = preload(() => import("@pages/Map/Maps"));
+const Payment = preload(() => import("@pages/Payment/Payment"));
 const CountriesPage = preload(() => import("@pages/Countries/Countries"));
 const HotelsPage = preload(() => import("@pages/Hotels/Hotels"));
 const ServicesDetails = preload(() =>
@@ -85,6 +86,10 @@ const routes = [
   {
     path: "/hotels",
     element: <HotelsPage />,
+  },
+  {
+    path: "/tour-payment",
+    element: <Payment />,
   },
   {
     path: "/profile",

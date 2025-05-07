@@ -1,0 +1,83 @@
+@use "../../styles/variables.scss" as vars;
+
+.container-payment {
+  max-width: 968px;
+  padding-inline: 20px;
+  margin: 0 auto;
+
+  .payment {
+    margin-top: 60px;
+    text-align: center;
+    font-size: clamp(2.75rem, 6vw, 1.75rem);
+  }
+
+  .title {
+    margin-top: 50px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  .title-payment {
+    margin-top: 40px;
+    font-weight: 500;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .text {
+    margin-top: 20px;
+    line-height: 1.625;
+  }
+
+  .warning {
+    margin-top: 40px;
+    margin-inline: auto;
+    padding: 50px 40px;
+    border: 1px solid #d4d4d4;
+    border-radius: 1.88rem;
+    max-width: 480px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .exclamation {
+      font-weight: 500;
+      font-size: 5.62rem;
+      color: #ec1c24;
+    }
+
+    .warning-text {
+      line-height: 1.625;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+  }
+
+  .card-block {
+    margin-top: 40px;
+    display: flex;
+    gap: 30px;
+
+    @media (max-width: 550px) {
+      flex-direction: column;
+    }
+
+    .card-title {
+      font: 500 1rem / 1 vars.$font-roboto;
+      text-transform: uppercase;
+      color: vars.$color-text;
+    }
+
+    .card-text {
+      max-width: 450px;
+      margin-top: 20px;
+      line-height: 1.625;
+    }
+
+    img {
+      margin-top: 20px;
+    }
+  }
+}
