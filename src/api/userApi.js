@@ -46,3 +46,23 @@ export const updateUserProfile = async (data, avatar) => {
     throw error;
   }
 };
+
+export const softDeleteUser = async () => {
+  try {
+    const response = await privateAxios.post("/user/soft-delete");
+    return response.data;
+  } catch (error) {
+    console.error("Помилка при м'якому видаленні акаунта:", error);
+    throw error;
+  }
+};
+
+export const restoreUser = async () => {
+  try {
+    const response = await privateAxios.post("/user/restore");
+    return response.data;
+  } catch (error) {
+    console.error("Помилка при відновленні акаунта:", error);
+    throw error;
+  }
+};

@@ -306,3 +306,21 @@
     }
   }
 }
+
+.delete-btn {
+  background-color: #dc2626;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin-top: 10px;
+  text-transform: uppercase;
+  border-radius: 30px;
+}
+
+.restore-btn {
+  background-color: #16a34a;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin-top: 10px;
+  text-transform: uppercase;
+  border-radius: 30px;
+}

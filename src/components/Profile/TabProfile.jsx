@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
-import { getDataUser, resendVerificationEmail } from "@api/userApi";
+import {
+  getDataUser,
+  resendVerificationEmail,
+  softDeleteUser,
+  restoreUser,
+} from "@api/userApi";
 import PropTypes from "prop-types";
 import { formatMonthDayYear } from "@utils/formatDate";
 import { Tooltip } from "react-tooltip";
@@ -87,6 +92,27 @@ const TabProfile = ({ onUsernameLoad }) => {
     }
   };
 
+  const handleSoftDelete = async () => {
+    try {
+      await softDeleteUser();
+      toast.success("Акаунт успішно м'яко видалено.");
+      dispatch(logoutUser());
+    } catch (error) {
+      console.error("Помилка м'якого видалення акаунта:", error.message);
+      toast.error("Не вдалося м'яко видалити акаунт.");
+    }
+  };
+
+  const handleRestore = async () => {
+    try {
+      await restoreUser();
+      toast.success("Акаунт успішно відновлено.");
+    } catch (error) {
+      console.error("Помилка відновлення акаунта:", error.message);
+      toast.error("Не вдалося відновити акаунт.");
+    }
+  };
+
   if (loading) {
     return <p>Завантаження...</p>;
   }
@@ -120,6 +146,15 @@ const TabProfile = ({ onUsernameLoad }) => {
             <strong>Дата реєстрації:</strong>{" "}
             {formatMonthDayYear(user.created_at)}
           </p>
+          {!user.deleted_at ? (
+            <button className={styles["delete-btn"]} onClick={handleSoftDelete}>
+              Видалити акаунт
+            </button>
+          ) : (
+            <button className={styles["restore-btn"]} onClick={handleRestore}>
+              Відновити акаунт
+            </button>
+          )}
         </div>
         <section className={styles["btn-section"]}>
           {!user.email_verified && (
