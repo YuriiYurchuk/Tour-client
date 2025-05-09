@@ -44,6 +44,7 @@ export const getAllHotels = async ({
   mealType = "",
   priceFrom = "",
   priceTo = "",
+  name = "",
 }) => {
   try {
     const response = await publicAxios.get("/hotel/all", {
@@ -59,6 +60,7 @@ export const getAllHotels = async ({
         mealType,
         priceFrom,
         priceTo,
+        name,
       },
     });
     return response.data;

@@ -324,3 +324,9 @@
   text-transform: uppercase;
   border-radius: 30px;
 }
+
+.title-manager {
+  color: vars.$color-text;
+  margin-bottom: 20px;
+  text-transform: unset;
+}

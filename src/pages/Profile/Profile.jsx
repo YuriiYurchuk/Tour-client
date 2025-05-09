@@ -5,6 +5,7 @@ import TabSetting from "@components/Profile/TabSetting";
 import TabReviews from "@components/Profile/TabReviews";
 import TabBooking from "@components/Profile/TabBooking";
 import TabUsers from "@components/Profile/TabUsers";
+import TabBookingManager from "@components/Profile/TabBookingManager";
 import Banner from "@components/Banner/Banner";
 import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs";
 import imgDesktop from "../../assets/images/Profile/banner-profile-desktop.webp";
@@ -18,7 +19,7 @@ const Profile = () => {
   const [activeTab, setActiveTab] = useState("profile");
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector((state) => state.auth.user);
-  const role = user?.role || "user";
+  const role = user?.role;
 
   useEffect(() => {
     setIsLoaded(true);
@@ -29,20 +30,21 @@ const Profile = () => {
       case "admin":
         return {
           profile: <TabProfile onUsernameLoad={setUsername} />,
-          setting: <TabSetting />,
           users: <TabUsers />,
+          setting: <TabSetting />,
         };
       case "manager":
         return {
           profile: <TabProfile onUsernameLoad={setUsername} />,
-          booking: <TabBooking />,
+          bookingManager: <TabBookingManager />,
+          setting: <TabSetting />,
         };
       default:
         return {
           profile: <TabProfile onUsernameLoad={setUsername} />,
-          setting: <TabSetting />,
           reviews: <TabReviews />,
           booking: <TabBooking />,
+          setting: <TabSetting />,
         };
     }
   };
@@ -55,9 +57,8 @@ const Profile = () => {
     setting: "Налаштування",
     reviews: "Відгуки",
     booking: "Бронювання",
+    bookingManager: "Бронювання",
     users: "Користувачі",
-    analytics: "Аналітика",
-    schedule: "Розклад",
   };
 
   const containerVariants = {
