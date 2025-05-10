@@ -7,6 +7,8 @@ import {
 import Pagination from "@components/Pagination/Pagination";
 import { generateDOCX } from "@utils/docxGenerator";
 import styles from "./Profile.module.scss";
+import { motion } from "framer-motion";
+import { animationsProfile } from "./animations";
 
 const TabBookingManager = () => {
   const [bookings, setBookings] = useState([]);
@@ -61,91 +63,97 @@ const TabBookingManager = () => {
     content = <p>Немає доступних бронювань.</p>;
   } else {
     content = (
-      <table className="table-auto w-full border-collapse border">
-        <thead>
-          <tr>
-            <th className="border px-4 py-2">ID</th>
-            <th className="border px-4 py-2">Користувач</th>
-            <th className="border px-4 py-2">Статус</th>
-            <th className="border px-4 py-2">Дії</th>
-          </tr>
-        </thead>
-        <tbody>
-          {bookings.map((booking) => (
-            <tr key={booking.id}>
-              <td className="border px-4 py-2">{booking.id}</td>
-              <td className="border px-4 py-2">{booking.user_id}</td>
-              <td className="border px-4 py-2">{booking.status}</td>
-              <td className="border px-4 py-2">
-                {booking.status === "скасовано" ? (
-                  <span>Бронювання скасовано</span>
-                ) : (
-                  <>
-                    {booking.status === "очікується" && (
-                      <>
-                        <button
-                          className="mr-2 bg-blue-500 text-white px-4 py-2 rounded"
-                          onClick={() =>
-                            handleStatusChange(booking.id, "підтверджено")
-                          }
-                        >
-                          Підтвердити
-                        </button>
-                        <button
-                          className="mr-2 bg-red-500 text-white px-4 py-2 rounded"
-                          onClick={() =>
-                            handleStatusChange(booking.id, "скасовано")
-                          }
-                        >
-                          Скасувати
-                        </button>
-                      </>
-                    )}
-                    {booking.status === "підтверджено" && (
-                      <button
-                        className="mr-2 bg-red-500 text-white px-4 py-2 rounded"
-                        onClick={() =>
-                          handleStatusChange(booking.id, "скасовано")
-                        }
-                      >
-                        Скасувати
-                      </button>
-                    )}
-                    {booking.status === "дані заповнено" && (
-                      <>
-                        <button
-                          className="mr-2 bg-red-500 text-white px-4 py-2 rounded"
-                          onClick={() =>
-                            handleStatusChange(booking.id, "скасовано")
-                          }
-                        >
-                          Скасувати
-                        </button>
-                        <button
-                          className="bg-green-500 text-white px-4 py-2 rounded"
-                          onClick={() => fetchBookingDetails(booking.id)}
-                        >
-                          Деталі
-                        </button>
-                      </>
-                    )}
-                  </>
-                )}
-              </td>
+      <div className="overflow-x-auto">
+        <table className="table-auto w-full border-collapse border">
+          <thead>
+            <tr>
+              <th className="border px-4 py-2 text-left">ID</th>
+              <th className="border px-4 py-2 text-left">Користувач</th>
+              <th className="border px-4 py-2 text-left">Статус</th>
+              <th className="border px-4 py-2 text-left">Зміна статусу</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {bookings.map((booking) => (
+              <tr key={booking.id}>
+                <td className="border px-4 py-2">{booking.id}</td>
+                <td className="border px-4 py-2">{booking.user_id}</td>
+                <td className="border px-4 py-2">{booking.status}</td>
+                <td className="border px-4 py-2">
+                  {booking.status === "скасовано" ? (
+                    <span>Бронювання скасовано</span>
+                  ) : (
+                    <>
+                      {booking.status === "очікується" && (
+                        <>
+                          <button
+                            className="mr-2 bg-blue-500 text-white px-4 py-2 rounded"
+                            onClick={() =>
+                              handleStatusChange(booking.id, "підтверджено")
+                            }
+                          >
+                            Підтвердити
+                          </button>
+                          <button
+                            className="mr-2 bg-red-500 text-white px-4 py-2 rounded"
+                            onClick={() =>
+                              handleStatusChange(booking.id, "скасовано")
+                            }
+                          >
+                            Скасувати
+                          </button>
+                        </>
+                      )}
+                      {booking.status === "підтверджено" && (
+                        <button
+                          className="mr-2 bg-red-500 text-white px-4 py-2 rounded"
+                          onClick={() =>
+                            handleStatusChange(booking.id, "скасовано")
+                          }
+                        >
+                          Скасувати
+                        </button>
+                      )}
+                      {booking.status === "дані заповнено" && (
+                        <>
+                          <button
+                            className="mr-2 bg-red-500 text-white px-4 py-2 rounded"
+                            onClick={() =>
+                              handleStatusChange(booking.id, "скасовано")
+                            }
+                          >
+                            Скасувати
+                          </button>
+                          <button
+                            className="bg-green-500 text-white px-4 py-2 rounded"
+                            onClick={() => fetchBookingDetails(booking.id)}
+                          >
+                            Деталі
+                          </button>
+                        </>
+                      )}
+                    </>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     );
   }
 
   return (
-    <div className={styles.container}>
+    <motion.section
+      initial="hidden"
+      animate="visible"
+      variants={animationsProfile.tab}
+    >
       <h2 className={styles["title-manager"]}>Управління бронюваннями</h2>
       <select
         value={status}
         onChange={(e) => setStatus(e.target.value)}
-        className="mb-4 p-2 border border-gray-300 rounded"
+        className="mb-4 p-2 border border-gray-300 rounded w-full sm:w-auto"
       >
         <option value="">Усі статуси</option>
         <option value="очікується">Очікується</option>
@@ -160,7 +168,7 @@ const TabBookingManager = () => {
         totalPages={totalPages}
         onPageChange={setCurrentPage}
       />
-    </div>
+    </motion.section>
   );
 };
 

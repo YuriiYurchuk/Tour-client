@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { fetchAllUsers, changeUserRole } from "@/api/adminApi";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
+import { animationsProfile } from "./animations";
 
 const roles = ["user", "manager"];
 
@@ -41,7 +43,12 @@ const TabUsers = () => {
   if (isLoading) return <p className="text-center">Завантаження...</p>;
 
   return (
-    <div className="container mx-auto p-4">
+    <motion.section
+      className="container mx-auto p-4"
+      initial="hidden"
+      animate="visible"
+      variants={animationsProfile.tab}
+    >
       <h2 className="text-xl font-semibold mb-4">Користувачі</h2>
       <div className="hidden md:block overflow-auto">
         <table className="min-w-full bg-white rounded-lg shadow">
@@ -105,7 +112,7 @@ const TabUsers = () => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.section>
   );
 };
 
