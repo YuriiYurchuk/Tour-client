@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllContactForms, deleteContactForm } from "@api/contactApi";
 import { motion } from "framer-motion";
 import { animationsProfile } from "./animations";
+import styles from "./Profile.module.scss"
 
 const TabContact = () => {
   const [contacts, setContacts] = useState([]);
@@ -73,7 +74,7 @@ const TabContact = () => {
       animate="visible"
       variants={animationsProfile.tab}
     >
-      <h2 className="text-xl font-semibold mb-4">Контактні форми</h2>
+      <h2 className={styles["title-manager"]}>Контактні форми</h2>
       {content}
       {error && <p className="text-red-500 mt-4">{error}</p>}
     </motion.section>

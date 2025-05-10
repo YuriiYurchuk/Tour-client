@@ -7,6 +7,7 @@ import TabBooking from "@components/Profile/TabBooking";
 import TabUsers from "@components/Profile/TabUsers";
 import TabBookingManager from "@components/Profile/TabBookingManager";
 import TabContact from "@components/Profile/TabContact";
+import TabSubscribe from "@components/Profile/TabSubscribe";
 import Banner from "@components/Banner/Banner";
 import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs";
 import imgDesktop from "../../assets/images/Profile/banner-profile-desktop.webp";
@@ -39,6 +40,7 @@ const Profile = () => {
           profile: <TabProfile onUsernameLoad={setUsername} />,
           bookingManager: <TabBookingManager />,
           contact: <TabContact />,
+          subscribe: <TabSubscribe />,
           setting: <TabSetting />,
         };
       default:
@@ -62,6 +64,7 @@ const Profile = () => {
     bookingManager: "Бронювання",
     users: "Користувачі",
     contact: "Контакти",
+    subscribe: "Підписки",
   };
 
   const containerVariants = {
