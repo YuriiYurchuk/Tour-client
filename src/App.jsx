@@ -107,11 +107,6 @@ const routes = [
     wrapper: PrivateRoute,
   },
   {
-    path: "/booking/:bookingId/personal",
-    element: <PersonalDetails />,
-    wrapper: PrivateRoute,
-  },
-  {
     path: "/booking/:bookingId/payment",
     element: <PaymentDetails />,
     wrapper: PrivateRoute,
