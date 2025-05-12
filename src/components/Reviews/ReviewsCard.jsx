@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import styles from "./ReviewsCard.module.scss";
 import filledStar from "../../assets/images/filled-star-icon.svg";
 import emptyStar from "../../assets/images/empty-star-icon.svg";
+import { formatMonthDayYear } from "@utils/formatDate";
 
 const ReviewsCard = ({
   userPhoto,
@@ -10,6 +11,7 @@ const ReviewsCard = ({
   city,
   hotelName,
   comment,
+  date,
 }) => {
   const renderStars = (rating) =>
     Array.from({ length: 5 }, (_, index) => (
@@ -29,6 +31,7 @@ const ReviewsCard = ({
       <h3>
         {city}, готель {hotelName}
       </h3>
+      <time>{formatMonthDayYear(date)}</time>
       <p className={styles["comment"]}>{comment}</p>
     </article>
   );
@@ -41,6 +44,7 @@ ReviewsCard.propTypes = {
   city: PropTypes.string.isRequired,
   hotelName: PropTypes.string.isRequired,
   comment: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
 };
 
 export default ReviewsCard;

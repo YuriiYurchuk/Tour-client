@@ -1,8 +1,11 @@
+import { useState } from "react";
 import styles from "./ReviewsComponents.module.scss";
 import { MButton } from "@components/UI/Button/Button";
 import { motion } from "framer-motion";
+import ModalReviews from "@components/Modal/ModalReviews";
 
 const ReviewsComponents = () => {
+  const [isModalReviews, setIsModalReviews] = useState(false);
   const animationVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0 },
@@ -21,6 +24,7 @@ const ReviewsComponents = () => {
           Відгуки
         </motion.h2>
         <MButton
+          onClick={() => setIsModalReviews(true)}
           variants={animationVariants}
           initial="hidden"
           animate="visible"
@@ -34,6 +38,10 @@ const ReviewsComponents = () => {
           Залишити відгук
         </MButton>
       </header>
+      <ModalReviews
+        isOpen={isModalReviews}
+        onClose={() => setIsModalReviews(false)}
+      />
     </section>
   );
 };

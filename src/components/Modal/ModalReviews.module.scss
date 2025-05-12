@@ -1,0 +1,130 @@
+@use "../../styles/variables.scss" as vars;
+
+.modal-reviews {
+  max-width: 400px;
+}
+
+.title {
+  color: vars.$color-text;
+  text-align: center;
+  max-width: 250px;
+  margin: 0 auto;
+  margin-bottom: 25px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .stars-label {
+    margin-bottom: 1rem;
+
+    span {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .stars {
+      display: flex;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .star-icon {
+      transition: transform 0.2s ease;
+      filter: drop-shadow(0 0 1px gray);
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .input {
+    color: vars.$color-text;
+    margin-bottom: 10px;
+    background-color: transparent;
+    border: vars.$border-drop;
+    padding: 5px 10px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+
+    &:hover {
+      background-color: vars.$color-background;
+    }
+  }
+
+  .textarea {
+    width: 100%;
+    height: 150px;
+    resize: none;
+    outline: none;
+    border: vars.$border-input;
+    padding: 10px;
+    border-radius: 30px;
+    color: vars.$color-text;
+    margin-bottom: 10px;
+  }
+
+  .submit-button {
+    position: relative;
+    width: 100%;
+    padding: 0.625rem 2.75rem 0.625rem 1.875rem;
+    font: 500 1rem / 1 vars.$font-roboto;
+    color: #fff;
+    border-radius: 1.25rem;
+    text-transform: uppercase;
+    background-color: vars.$button-background;
+    margin-bottom: 20px;
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+      border: none;
+    }
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+
+    &:focus-visible,
+    &:hover {
+      background-color: vars.$button-hover;
+    }
+
+    &::after {
+      position: absolute;
+      margin-left: 10px;
+      top: 50%;
+      content: url("../../assets//images/arrow-icon.svg");
+      transform: translateY(-50%);
+      transition: transform 0.5s;
+    }
+
+    &:hover::after {
+      transform: translate(5px, -50%) rotate(-45deg);
+    }
+
+    &:focus-visible {
+      outline: none;
+      background-color: vars.$button-hover;
+    }
+
+    &:focus-visible::after {
+      transform: translate(5px, -50%) rotate(-45deg);
+    }
+
+    @media (hover: none) {
+      &:hover::after {
+        transform: translateY(-50%);
+      }
+
+      &:focus-visible::after {
+        transform: translate(5px, -50%) rotate(-45deg);
+      }
+    }
+  }
+}

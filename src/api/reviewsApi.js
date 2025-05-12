@@ -43,3 +43,13 @@ export const deleteCompanyReview = async (reviewId) => {
     throw error;
   }
 };
+
+export const createCompanyReview = async (reviewData) => {
+  try {
+    const response = await privateAxios.post("/reviews/create", reviewData);
+    return response.data;
+  } catch (error) {
+    console.error("Помилка при створенні відгуку", error);
+    throw error;
+  }
+};

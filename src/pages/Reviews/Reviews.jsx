@@ -68,6 +68,7 @@ const ReviewsPage = () => {
               y: { duration: 1, ease: "easeOut" },
             }}
             viewport={{ once: true, amount: 0.5 }}
+            className="w-full"
           >
             <ReviewsCard
               userPhoto={`${imagesBaseUrl}${review.user.avatar_url}`}
